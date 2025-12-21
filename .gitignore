@@ -1,0 +1,45 @@
+# ===== .NET / MAUI =====
+bin/
+obj/
+**/bin/
+**/obj/
+
+# ===== Visual Studio / Rider =====
+.vs/
+.idea/
+*.user
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# ===== Build / Logs =====
+*.log
+
+# ===== Android =====
+*.apk
+*.aab
+*.keystore
+*.jks
+local.properties
+.gradle/
+build/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== NuGet =====
+packages/
+*.nupkg
+.nuget/
+.nuget.props
+.nuget.targets
+
+# ===== Environment =====
+.env
+.env.*
+
+# ===== MAUI tooling =====
+Resources/Raw/*.tmp
