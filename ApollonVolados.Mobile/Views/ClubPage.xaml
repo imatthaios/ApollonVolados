@@ -1,0 +1,106 @@
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ApollonVolados.Mobile.Views.Controls"
+    x:Class="ApollonVolados.Mobile.Views.ClubPage"
+    Title="Σύλλογος">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="24">
+
+            <!-- LOGO -->
+            <Image
+                Source="apollon_logo.png"
+                HeightRequest="160"
+                HorizontalOptions="Center"
+                Aspect="AspectFit" />
+
+            <!-- TITLE -->
+            <Label
+                Text="Αθλητικός Σύλλογος Απόλλων Βωλάδος"
+                Style="{StaticResource TitleLabel}"
+                HorizontalTextAlignment="Center" />
+
+            <Label
+                Text="Ιδρύθηκε το 1924"
+                Style="{StaticResource SmallMutedLabel}"
+                HorizontalTextAlignment="Center" />
+
+            <!-- HISTORY -->
+            <!-- TIMELINE -->
+            <Border>
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="🕰 Χρονολόγιο"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        TextColor="{StaticResource PrimaryGreen}" />
+
+                    <controls:TimelineSection />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- CLUB INFO -->
+            <Border>
+                <VerticalStackLayout Spacing="8">
+
+                    <Label
+                        Text="🏟 Στοιχεία Συλλόγου"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource PrimaryGreen}" />
+
+                    <Label Text="📅 Έτος Ίδρυσης: 1924" />
+                    <Label Text="🏟 Έδρα: Δημοτικό Γήπεδο Βωλάδος" />
+                    <Label Text="🎨 Χρώματα: Πράσινο – Άσπρο" />
+
+                </VerticalStackLayout>
+            </Border>
+            
+            <Border>
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="🏆 Σημαντικοί Σταθμοί"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource PrimaryGreen}" />
+
+                    <controls:MilestonesSection />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- CONTACT -->
+            <Border>
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="📞 Επικοινωνία"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource PrimaryGreen}" />
+
+                    <Button
+                        Text="📞 Τηλέφωνο"
+                        Command="{Binding CallCommand}" />
+
+                    <Button
+                        Text="✉️ Email"
+                        Command="{Binding EmailCommand}" />
+
+                    <Button
+                        Text="🌐 Website"
+                        Command="{Binding WebsiteCommand}" />
+
+                    <Button
+                        Text="📍 Χάρτης"
+                        Command="{Binding MapCommand}" />
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

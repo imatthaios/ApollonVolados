@@ -2,11 +2,11 @@ using ApollonVolados.Mobile.ViewModels;
 
 namespace ApollonVolados.Mobile.Views;
 
-public partial class ContactPage : ContentPage
+public partial class ClubPage : ContentPage
 {
-    public ContactPage()
+    public ClubPage(ClubViewModel vm)
     {
         InitializeComponent();
-        BindingContext = new ContactViewModel();
+        BindingContext = vm;
     }
 }

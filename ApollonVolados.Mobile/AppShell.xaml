@@ -5,16 +5,21 @@
     x:Class="ApollonVolados.Mobile.AppShell">
 
     <TabBar>
-        <!-- ΝΕΑ -->
-        <Tab Title="Νέα" Icon="tab_news.png">
-            <ShellContent
-                ContentTemplate="{DataTemplate views:NewsPage}" />
-        </Tab>
 
-        <!-- ΕΠΙΚΟΙΝΩΝΙΑ -->
-        <Tab Title="Επικοινωνία" Icon="tab_contact.png">
-            <ShellContent
-                ContentTemplate="{DataTemplate views:ContactPage}" />
-        </Tab>
+        <ShellContent
+            Title="Νέα"
+            Icon="tab_news.png"
+            ContentTemplate="{DataTemplate views:NewsPage}" />
+
+        <ShellContent
+            Title="Ομάδα"
+            ContentTemplate="{DataTemplate views:TeamsPage}" />
+
+        <ShellContent
+            Title="Σύλλογος"
+            Icon="tab_info.png"
+            ContentTemplate="{DataTemplate views:ClubPage}" />
+
     </TabBar>
+
 </Shell>

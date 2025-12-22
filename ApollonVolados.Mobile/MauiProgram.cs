@@ -22,6 +22,16 @@ public static class MauiProgram
         builder.Services.AddSingleton<WordPressService>();
         builder.Services.AddTransient<NewsViewModel>();
         builder.Services.AddTransient<NewsPage>();
+        
+        builder.Services.AddSingleton<ClubViewModel>();
+        builder.Services.AddTransient<ClubPage>();
+        
+        builder.Services.AddSingleton<TimelineViewModel>();
+        
+        builder.Services.AddTransient<TeamsViewModel>();
+        builder.Services.AddTransient<TeamsPage>();
+
+        builder.Services.AddTransient<TeamWebPage>();
 
         return builder.Build();
     }

@@ -1,6 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ApollonVolados.Mobile.Models;
 using ApollonVolados.Mobile.Services;
 using System.Collections.ObjectModel;
 

@@ -1,175 +1,120 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!-- ================================================= -->
-    <!-- 🎨 BRAND COLORS -->
-    <!-- ================================================= -->
-
-    <!-- Primary -->
-    <Color x:Key="PrimaryGreen">#0E7A3E</Color>
-    <Color x:Key="PrimaryGreenDark">#0A5A2E</Color>
-    <Color x:Key="PrimaryWhite">#FFFFFF</Color>
-
-    <!-- Secondary / Accent -->
-    <Color x:Key="AccentGold">#D4AF37</Color>
-    <Color x:Key="AccentGoldDark">#B8962E</Color>
-    <Color x:Key="AccentBlack">#111111</Color>
-
-    <!-- Neutrals -->
-    <Color x:Key="Gray100">#F5F5F5</Color>
-    <Color x:Key="Gray200">#E5E5E5</Color>
-    <Color x:Key="Gray400">#BDBDBD</Color>
-    <Color x:Key="Gray700">#616161</Color>
-    <Color x:Key="Gray900">#212121</Color>
-
-    <!-- Backgrounds -->
-    <Color x:Key="PageLight">#FFFFFF</Color>
-    <Color x:Key="PageDark">#0F0F0F</Color>
-
-    <!-- ================================================= -->
-    <!-- 📱 PAGE -->
-    <!-- ================================================= -->
-
-    <Style TargetType="Page" ApplyToDerivedTypes="True">
-        <Setter Property="Padding" Value="0" />
+    <!-- GLOBAL PAGE -->
+    <Style TargetType="Page">
         <Setter Property="BackgroundColor"
-                Value="{AppThemeBinding Light={StaticResource PageLight},
-                                         Dark={StaticResource PageDark}}" />
+                Value="{StaticResource White}" />
+    </Style>
+    
+    <Style x:Key="PageTitleLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor"
+                    Value="{StaticResource PrimaryGreen}" />
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
     </Style>
 
-    <!-- ================================================= -->
-    <!-- 🧱 CARD / BORDER -->
-    <!-- ================================================= -->
-
-    <Style TargetType="Border">
-        <Setter Property="StrokeShape" Value="RoundRectangle 14" />
-        <Setter Property="StrokeThickness" Value="1" />
-        <Setter Property="Stroke"
-                Value="{AppThemeBinding Light={StaticResource Gray200},
-                                         Dark={StaticResource Gray700}}" />
-        <Setter Property="BackgroundColor"
-                Value="{AppThemeBinding Light={StaticResource PrimaryWhite},
-                                         Dark={StaticResource Gray900}}" />
-    </Style>
-
-    <!-- ================================================= -->
-    <!-- 📝 TEXT -->
-    <!-- ================================================= -->
-
+    <!-- LABELS -->
     <Style TargetType="Label">
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Light={StaticResource AccentBlack},
-                                         Dark={StaticResource PrimaryWhite}}" />
-        <Setter Property="FontSize" Value="14" />
+                Value="{StaticResource Gray700}" />
+        <Setter Property="FontSize" Value="14"/>
     </Style>
 
     <Style x:Key="TitleLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Light={StaticResource AccentBlack},
-                                         Dark={StaticResource PrimaryWhite}}" />
+                Value="{StaticResource PrimaryGreen}"/>
     </Style>
 
-    <Style x:Key="SubtitleLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="13" />
+    <Style x:Key="SmallMutedLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Light={StaticResource Gray700},
-                                         Dark={StaticResource Gray400}}" />
+                Value="{StaticResource Gray600}"/>
     </Style>
 
-    <!-- ================================================= -->
-    <!-- 🔘 BUTTONS -->
-    <!-- ================================================= -->
-
-    <!-- Primary Button (Green) -->
+    <!-- BUTTONS -->
     <Style TargetType="Button">
         <Setter Property="BackgroundColor"
-                Value="{AppThemeBinding Light={StaticResource PrimaryGreen},
-                                         Dark={StaticResource PrimaryGreenDark}}" />
-        <Setter Property="TextColor" Value="White" />
-        <Setter Property="CornerRadius" Value="10" />
-        <Setter Property="Padding" Value="14,10" />
-        <Setter Property="FontSize" Value="14" />
+                Value="{StaticResource PrimaryGreen}" />
+        <Setter Property="TextColor"
+                Value="{StaticResource White}" />
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="Padding" Value="14"/>
     </Style>
 
-    <!-- Accent Button (Gold) -->
-    <Style x:Key="GoldButton" TargetType="Button">
+    <Style x:Key="SecondaryButton" TargetType="Button">
         <Setter Property="BackgroundColor"
-                Value="{AppThemeBinding Light={StaticResource AccentGold},
-                                         Dark={StaticResource AccentGoldDark}}" />
-        <Setter Property="TextColor" Value="Black" />
+                Value="{StaticResource Gold}" />
+        <Setter Property="TextColor"
+                Value="{StaticResource Black}" />
     </Style>
 
-    <!-- ================================================= -->
-    <!-- 🔄 LOAD / REFRESH -->
-    <!-- ================================================= -->
+    <Style x:Key="OutlineButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="TextColor"
+                Value="{StaticResource PrimaryGreen}"/>
+        <Setter Property="BorderColor"
+                Value="{StaticResource PrimaryGreen}"/>
+        <Setter Property="BorderWidth" Value="1"/>
+    </Style>
 
+    <!-- CARDS -->
+    <Style TargetType="Border">
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource PrimaryGreenSoft}" />
+        <Setter Property="Stroke"
+                Value="{StaticResource PrimaryGreen}" />
+        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="StrokeShape"
+                Value="RoundRectangle 16"/>
+        <Setter Property="Padding" Value="14"/>
+    </Style>
+
+    <!-- ACTIVITY INDICATOR -->
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color"
-                Value="{AppThemeBinding Light={StaticResource PrimaryGreen},
-                                         Dark={StaticResource AccentGold}}" />
-    </Style>
-
-    <Style TargetType="RefreshView">
-        <Setter Property="RefreshColor"
-                Value="{AppThemeBinding Light={StaticResource PrimaryGreen},
-                                         Dark={StaticResource AccentGold}}" />
-    </Style>
-
-    <!-- ================================================= -->
-    <!-- 🧭 SHELL / TAB BAR -->
-    <!-- ================================================= -->
-
-    <Style TargetType="Shell" ApplyToDerivedTypes="True">
-        <Setter Property="Shell.BackgroundColor"
-                Value="{AppThemeBinding Light={StaticResource PrimaryWhite},
-                                         Dark={StaticResource AccentBlack}}" />
-
-        <Setter Property="Shell.TitleColor"
-                Value="{AppThemeBinding Light={StaticResource AccentBlack},
-                                         Dark={StaticResource PrimaryWhite}}" />
-
-        <Setter Property="Shell.ForegroundColor"
-                Value="{AppThemeBinding Light={StaticResource AccentBlack},
-                                         Dark={StaticResource PrimaryWhite}}" />
-
-        <!-- TabBar -->
-        <Setter Property="Shell.TabBarBackgroundColor"
-                Value="{AppThemeBinding Light={StaticResource PrimaryWhite},
-                                         Dark={StaticResource AccentBlack}}" />
-
-        <Setter Property="Shell.TabBarForegroundColor"
                 Value="{StaticResource PrimaryGreen}" />
-
-        <Setter Property="Shell.TabBarTitleColor"
-                Value="{StaticResource PrimaryGreen}" />
-
-        <Setter Property="Shell.TabBarUnselectedColor"
-                Value="{StaticResource Gray400}" />
-    </Style>
-    
-    <!-- Contact Card -->
-    <Style x:Key="ContactCard" TargetType="Border">
-        <Setter Property="StrokeShape" Value="RoundRectangle 14" />
-        <Setter Property="StrokeThickness" Value="1" />
-        <Setter Property="Stroke" Value="{StaticResource PrimaryGreen}" />
-        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryWhite}" />
     </Style>
 
-    <!-- Contact Title -->
-    <Style x:Key="ContactTitle" TargetType="Label">
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="TextColor" Value="{StaticResource PrimaryGreen}" />
-    </Style>
+    <!-- ========================= -->
+    <!-- SHELL / TABS / NAV BAR -->
+    <!-- ========================= -->
+    <Style TargetType="Shell">
 
-    <!-- Contact Value -->
-    <Style x:Key="ContactValue" TargetType="Label">
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="TextColor" Value="{StaticResource AccentBlack}" />
+            <!-- ΓΕΝΙΚΟ -->
+            <Setter Property="Shell.BackgroundColor"
+                    Value="{StaticResource White}" />
+
+            <!-- TITLE -->
+            <Setter Property="Shell.TitleColor"
+                    Value="{StaticResource NavTitle}" />
+
+            <!-- ICONS -->
+            <Setter Property="Shell.ForegroundColor"
+                    Value="{StaticResource NavIcon}" />
+
+            <!-- TAB BAR -->
+            <Setter Property="Shell.TabBarBackgroundColor"
+                    Value="{StaticResource White}" />
+
+            <!-- ΕΝΕΡΓΟ TAB -->
+            <Setter Property="Shell.TabBarForegroundColor"
+                    Value="{StaticResource TabSelected}" />
+
+            <!-- ΑΝΕΝΕΡΓΟ TAB -->
+            <Setter Property="Shell.TabBarUnselectedColor"
+                    Value="{StaticResource TabUnselected}" />
+
+            <!-- ΧΩΡΙΣ ΣΚΙΑ -->
+            <Setter Property="Shell.NavBarHasShadow"
+                    Value="False" />
+
     </Style>
 
 </ResourceDictionary>

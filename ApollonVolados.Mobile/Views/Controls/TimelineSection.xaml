@@ -1,0 +1,62 @@
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ApollonVolados.Mobile.Views.Controls.TimelineSection">
+
+    <CollectionView
+        ItemsSource="{Binding Events}"
+        SelectionMode="None">
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid ColumnDefinitions="30,*" Padding="0,12">
+
+                    <!-- DOT + LINE -->
+                    <Grid>
+                        <BoxView
+                            WidthRequest="2"
+                            BackgroundColor="{StaticResource PrimaryGreen}"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="Center"/>
+
+                        <Frame
+                            WidthRequest="14"
+                            HeightRequest="14"
+                            CornerRadius="7"
+                            BackgroundColor="{StaticResource PrimaryGreen}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Start"
+                            Padding="0"
+                            Margin="0,4,0,0"/>
+                    </Grid>
+
+                    <!-- CONTENT -->
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Spacing="4"
+                        Padding="12,0">
+
+                        <Label
+                            Text="{Binding Year}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource PrimaryGreen}" />
+
+                        <Label
+                            Text="{Binding Title}"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            Text="{Binding Description}"
+                            FontSize="13"
+                            TextColor="{StaticResource Gray600}" />
+
+                    </VerticalStackLayout>
+
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+
+</ContentView>

@@ -1,4 +1,3 @@
-using ApollonVolados.Mobile.Models;
 using ApollonVolados.Mobile.ViewModels;
 
 namespace ApollonVolados.Mobile.Views;

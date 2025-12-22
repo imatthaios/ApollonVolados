@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace ApollonVolados.Mobile;
+﻿namespace ApollonVolados.Mobile;
 
 public partial class App : Application
 {
