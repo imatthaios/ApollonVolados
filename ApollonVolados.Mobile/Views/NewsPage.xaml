@@ -1,62 +1,68 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ApollonVolados.Mobile.Views.Controls"
     x:Class="ApollonVolados.Mobile.Views.NewsPage"
     Title="Νέα">
 
-    <CollectionView
-        ItemsSource="{Binding Posts}"
-        SelectionMode="Single"
-        SelectionChanged="OnItemSelected"
-        Margin="12">
+    <Grid>
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Border
-                    StrokeShape="RoundRectangle 14"
-                    Padding="10"
-                    Margin="0,6">
+        <!-- MAIN CONTENT -->
+        <CollectionView
+            ItemsSource="{Binding Posts}"
+            SelectionMode="Single"
+            SelectionChanged="OnItemSelected"
+            Margin="12">
 
-                    <Grid
-                        ColumnDefinitions="90,*"
-                        ColumnSpacing="12">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        StrokeShape="RoundRectangle 14"
+                        Padding="10"
+                        Margin="0,6">
 
-                        <!-- IMAGE -->
-                        <Image
-                            Source="{Binding ImageUrl}"
-                            HeightRequest="80"
-                            WidthRequest="80"
-                            Aspect="AspectFill" />
-
-                        <!-- RIGHT CONTENT -->
                         <Grid
-                            Grid.Column="1"
-                            RowDefinitions="*,Auto">
+                            ColumnDefinitions="90,*"
+                            ColumnSpacing="12">
 
-                            <!-- TITLE (uses all available space) -->
-                            <Label
-                                Text="{Binding TitleText}"
-                                Style="{StaticResource TitleLabel}"
-                                LineBreakMode="TailTruncation"
-                                MaxLines="3"
-                                VerticalOptions="Start" />
+                            <!-- IMAGE -->
+                            <Image
+                                Source="{Binding ImageUrl}"
+                                HeightRequest="80"
+                                WidthRequest="80"
+                                Aspect="AspectFill" />
 
-                            <!-- DATE (bottom-right) -->
-                            <Label
-                                Grid.Row="1"
-                                Text="{Binding PublishedDateText}"
-                                FontSize="11"
-                                TextColor="{StaticResource Gray700}"
-                                HorizontalOptions="End"
-                                VerticalOptions="End"
-                                Margin="0,6,0,0"/>
+                            <!-- RIGHT CONTENT -->
+                            <Grid
+                                Grid.Column="1"
+                                RowDefinitions="*,Auto">
+
+                                <!-- TITLE -->
+                                <Label
+                                    Text="{Binding TitleText}"
+                                    Style="{StaticResource TitleLabel}"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="3" />
+
+                                <!-- DATE -->
+                                <Label
+                                    Grid.Row="1"
+                                    Text="{Binding PublishedDateText}"
+                                    FontSize="11"
+                                    TextColor="{StaticResource Gray700}"
+                                    HorizontalOptions="End"
+                                    Margin="0,6,0,0" />
+                            </Grid>
+
                         </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-                    </Grid>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+        </CollectionView>
 
-    </CollectionView>
+        <!-- LOADING OVERLAY (πάνω από όλα) -->
+        <controls:LoadingOverlay />
 
+    </Grid>
 </ContentPage>

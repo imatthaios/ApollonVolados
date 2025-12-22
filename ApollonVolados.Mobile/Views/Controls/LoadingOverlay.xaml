@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ApollonVolados.Mobile.Views.Controls.LoadingOverlay"
+    IsVisible="{Binding IsBusy}">
+
+    <!-- Semi-transparent overlay -->
+    <Grid
+        BackgroundColor="#80FFFFFF"
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill">
+
+        <VerticalStackLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Spacing="12">
+
+            <ActivityIndicator
+                IsRunning="True"
+                WidthRequest="40"
+                HeightRequest="40"
+                Color="{StaticResource PrimaryGreen}" />
+
+            <Label
+                Text="Φόρτωση..."
+                FontSize="14"
+                TextColor="{StaticResource PrimaryGreen}"
+                HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentView>
