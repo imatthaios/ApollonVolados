@@ -6,7 +6,7 @@ namespace ApollonVolados.Mobile.Services;
 public class WordPressService
 {
     private const string BaseUrl =
-        "https://apollonvolados.gr/wp-json/wp/v2/posts";
+        "https://apollonvolados.gr/wp-json/wp/v2/posts?_embed";
 
     private readonly HttpClient _httpClient;
 

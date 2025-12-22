@@ -10,7 +10,7 @@ public partial class NewsViewModel : ObservableObject
 {
     private readonly WordPressService _service;
 
-    public ObservableCollection<WpPost> Posts { get; } = [];
+    public ObservableCollection<NewsItemViewModel> Posts { get; } = [];
 
     [ObservableProperty]
     private bool isBusy;
@@ -31,8 +31,11 @@ public partial class NewsViewModel : ObservableObject
             Posts.Clear();
 
             var posts = await _service.GetLatestPostsAsync();
+
             foreach (var post in posts)
-                Posts.Add(post);
+            {
+                Posts.Add(new NewsItemViewModel(post));
+            }
         }
         finally
         {

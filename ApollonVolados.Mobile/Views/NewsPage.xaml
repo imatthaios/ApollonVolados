@@ -1,37 +1,62 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:ApollonVolados.Mobile.ViewModels"
     x:Class="ApollonVolados.Mobile.Views.NewsPage"
     Title="Νέα">
 
     <CollectionView
         ItemsSource="{Binding Posts}"
-        SelectionMode="None"
+        SelectionMode="Single"
+        SelectionChanged="OnItemSelected"
         Margin="12">
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame
-                    Padding="12"
-                    Margin="0,6"
-                    CornerRadius="12"
-                    HasShadow="True">
+                <Border
+                    StrokeShape="RoundRectangle 14"
+                    Padding="10"
+                    Margin="0,6">
 
-                    <VerticalStackLayout Spacing="6">
-                        <Label
-                            Text="{Binding Title.Rendered}"
-                            FontSize="18"
-                            FontAttributes="Bold" />
+                    <Grid
+                        ColumnDefinitions="90,*"
+                        ColumnSpacing="12">
 
-                        <Label
-                            Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"
-                            FontSize="12"
-                            TextColor="Gray" />
-                    </VerticalStackLayout>
+                        <!-- IMAGE -->
+                        <Image
+                            Source="{Binding ImageUrl}"
+                            HeightRequest="80"
+                            WidthRequest="80"
+                            Aspect="AspectFill" />
 
-                </Frame>
+                        <!-- RIGHT CONTENT -->
+                        <Grid
+                            Grid.Column="1"
+                            RowDefinitions="*,Auto">
+
+                            <!-- TITLE (uses all available space) -->
+                            <Label
+                                Text="{Binding TitleText}"
+                                Style="{StaticResource TitleLabel}"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="3"
+                                VerticalOptions="Start" />
+
+                            <!-- DATE (bottom-right) -->
+                            <Label
+                                Grid.Row="1"
+                                Text="{Binding PublishedDateText}"
+                                FontSize="11"
+                                TextColor="{StaticResource Gray700}"
+                                HorizontalOptions="End"
+                                VerticalOptions="End"
+                                Margin="0,6,0,0"/>
+                        </Grid>
+
+                    </Grid>
+                </Border>
             </DataTemplate>
         </CollectionView.ItemTemplate>
+
     </CollectionView>
+
 </ContentPage>
