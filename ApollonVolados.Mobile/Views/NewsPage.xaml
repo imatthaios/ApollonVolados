@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -5,84 +6,108 @@
     Title="Νέα"
     BackgroundColor="{StaticResource SurfaceColor}">
 
-    <CollectionView
-        ItemsSource="{Binding Posts}"
-        SelectionMode="Single"
-        SelectionChanged="OnItemSelected"
-        Margin="12"
-        BackgroundColor="{StaticResource SurfaceColor}">
+    <Grid>
 
-        <!-- SKELETON LOADING -->
-        <CollectionView.EmptyView>
-            <VerticalStackLayout Spacing="12">
-                <Border HeightRequest="90" Opacity="0.4" />
-                <Border HeightRequest="90" Opacity="0.4" />
-                <Border HeightRequest="90" Opacity="0.4" />
-            </VerticalStackLayout>
-        </CollectionView.EmptyView>
+        <!-- ================= NEWS LIST ================= -->
+        <CollectionView
+            ItemsSource="{Binding Posts}"
+            SelectionMode="Single"
+            SelectionChanged="OnItemSelected"
+            Margin="12"
+            BackgroundColor="{StaticResource SurfaceColor}"
+            ItemSizingStrategy="MeasureFirstItem">
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Border
-                    x:Name="ArticleCard"
-                    BackgroundColor="{StaticResource SurfaceColor}"
-                    Padding="12"
-                    Margin="0,10"
-                    StrokeShape="RoundRectangle 14">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="16" />
+            </CollectionView.ItemsLayout>
 
-                    <!-- SUBTLE SHADOW -->
-                    <Border.Shadow>
-                        <Shadow Brush="#0F000000" Offset="0,2" Radius="6" />
-                    </Border.Shadow>
+            <!-- ================= EMPTY / LOADING SKELETON ================= -->
+            <CollectionView.EmptyView>
+                <VerticalStackLayout Spacing="16" Padding="12">
+                    <Border
+                        HeightRequest="96"
+                        StrokeShape="RoundRectangle 18"
+                        BackgroundColor="{StaticResource SkeletonColor}" />
+                    <Border
+                        HeightRequest="96"
+                        StrokeShape="RoundRectangle 18"
+                        BackgroundColor="{StaticResource SkeletonColor}" />
+                    <Border
+                        HeightRequest="96"
+                        StrokeShape="RoundRectangle 18"
+                        BackgroundColor="{StaticResource SkeletonColor}" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
 
-                    <Grid ColumnDefinitions="90,*" ColumnSpacing="12">
+            <!-- ================= ARTICLE CARD ================= -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        BackgroundColor="{StaticResource SurfaceColor}"
+                        Padding="14"
+                        StrokeShape="RoundRectangle 18">
 
-                        <!-- IMAGE WITH ROUNDED MASK -->
-                        <Border
-                            HeightRequest="80"
-                            WidthRequest="80"
-                            StrokeShape="RoundRectangle 10"
-                            BackgroundColor="#EEE">
+                        <!-- SUBTLE SHADOW -->
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="#14000000"
+                                Offset="0,3"
+                                Radius="8" />
+                        </Border.Shadow>
 
-                            <Image
-                                Source="{Binding ImageUrl}"
-                                Aspect="AspectFill"/>
-                        </Border>
+                        <Grid ColumnDefinitions="96,*" ColumnSpacing="14">
 
-                        <!-- CONTENT -->
-                        <Grid Grid.Column="1" RowDefinitions="*,Auto">
+                            <!-- IMAGE -->
+                            <Border
+                                HeightRequest="88"
+                                WidthRequest="88"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="{StaticResource SkeletonColor}">
 
-                            <!-- TITLE -->
-                            <Label
-                                Text="{Binding TitleText}"
-                                Style="{StaticResource ArticleTitle}"
-                                LineBreakMode="TailTruncation"
-                                MaxLines="3">
+                                <Image
+                                    Source="{Binding ImageUrl}"
+                                    Aspect="AspectFill" />
+                            </Border>
 
-                                <!-- DROP CAP FOR FIRST ITEM -->
-                                <Label.Triggers>
-                                    <DataTrigger
-                                        TargetType="Label"
-                                        Binding="{Binding IsFirst}"
-                                        Value="True">
-                                        <Setter Property="FontSize" Value="20"/>
-                                        <Setter Property="CharacterSpacing" Value="1.5"/>
-                                    </DataTrigger>
-                                </Label.Triggers>
-                            </Label>
+                            <!-- CONTENT -->
+                            <Grid Grid.Column="1" RowDefinitions="*,Auto">
 
-                            <!-- DATE -->
-                            <Label
-                                Grid.Row="1"
-                                Text="{Binding PublishedDateText}"
-                                Style="{StaticResource ArticleMeta}"
-                                HorizontalOptions="End"
-                                Margin="0,6,0,0"/>
+                                <Label
+                                    Text="{Binding TitleText}"
+                                    Style="{StaticResource ArticleTitle}"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="3" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Text="{Binding PublishedDateText}"
+                                    Style="{StaticResource ArticleMeta}"
+                                    HorizontalOptions="End"
+                                    Margin="0,8,0,0" />
+                            </Grid>
+
                         </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-                    </Grid>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+        </CollectionView>
+
+        <!-- ================= LOADING OVERLAY ================= -->
+        <Grid
+            IsVisible="{Binding IsBusy}"
+            BackgroundColor="#80FFFFFF">
+
+            <ActivityIndicator
+                IsRunning="True"
+                Color="{StaticResource PrimaryColor}"
+                WidthRequest="48"
+                HeightRequest="48"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+        </Grid>
+
+    </Grid>
 </ContentPage>

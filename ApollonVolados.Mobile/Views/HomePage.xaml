@@ -4,109 +4,44 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="ApollonVolados.Mobile.Views.HomePage"
     Title="Αρχική"
-    Shell.NavBarIsVisible="False">
+    BackgroundColor="{StaticResource BackgroundColor}">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="0">
+        <VerticalStackLayout
+            Padding="32"
+            Spacing="28"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
 
-            <!-- ================= HEADER / HERO ================= -->
-            <Grid
-                Padding="{OnPlatform iOS='0,56,0,16', Android='0,24,0,16'}"
-                RowDefinitions="Auto,Auto"
-                BackgroundColor="{StaticResource PrimaryColor}">
-                
-                <!-- Logo (animated) -->
-                <Image
-                    x:Name="HeroLogo"
-                    Source="logo.png"
-                    HeightRequest="{OnIdiom Phone=96, Tablet=120}"
-                    HorizontalOptions="Center"
-                    Aspect="AspectFit"
-                    Opacity="0"
-                    Scale="0.9"
-                    Margin="0,8"/>
+            <!-- LOGO -->
+            <Image
+                x:Name="HeroLogo"
+                Source="apollon_logo.png"
+                HeightRequest="180"
+                Opacity="0"
+                HorizontalOptions="Center"
+                Aspect="AspectFit" />
 
-                <!-- Titles -->
-                <VerticalStackLayout Grid.Row="1"
-                                     Spacing="4"
-                                     HorizontalOptions="Center">
-                    <Label
-                        Text="ΑΠΟΛΛΩΝ ΒΩΛΑΔΟΣ"
-                        FontAttributes="Bold"
-                        FontSize="{OnIdiom Phone=18, Tablet=22}"
-                        TextColor="White"
-                        HorizontalTextAlignment="Center"/>
+            <!-- TITLE -->
+            <Label
+                Text="Η αποστολή μας"
+                FontFamily="PlayfairBold"
+                FontSize="26"
+                TextColor="{StaticResource TextPrimary}"
+                HorizontalTextAlignment="Center" />
 
-                    <Label
-                        Text="Κάρπαθος • 1924"
-                        FontSize="{OnIdiom Phone=12, Tablet=14}"
-                        TextColor="{StaticResource TextSecondary}"
-                        HorizontalTextAlignment="Center"/>
-                </VerticalStackLayout>
-            </Grid>
+            <!-- MISSION TEXT -->
+            <Label
+                Text="Στον Α.Σ Απόλλων Βωλάδος, η αποστολή μας είναι να προάγουμε και να καλλιεργούμε τον αθλητισμό, τον πολιτισμό, την ανάπτυξη δεξιοτήτων και την ενότητα μέσω των δράσεών μας.
 
-            <!-- Cut / transition -->
-            <BoxView
-                HeightRequest="14"
-                BackgroundColor="{StaticResource SurfaceColor}"
-                CornerRadius="14,14,0,0"
-                Margin="0,-14,0,0"/>
-
-            <!-- ================= CONTENT ================= -->
-            <VerticalStackLayout Padding="16" Spacing="14">
-
-                <!-- Next Match Card -->
-                <Border
-                    x:Name="CardMatch"
-                    Style="{StaticResource Card}"
-                    Opacity="0"
-                    TranslationY="20">
-
-                    <VerticalStackLayout Spacing="6">
-                        <Label Text="Επόμενος Αγώνας"
-                               Style="{StaticResource H2}" />
-
-                        <Label Text="Απόλλων Βωλάδος vs Αντίπαλος"
-                               Style="{StaticResource Body}" />
-
-                        <Label Text="Παρασκευή • 18:00"
-                               Style="{StaticResource Body}" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <!-- Announcement Card -->
-                <Border
-                    x:Name="CardAnnouncement"
-                    Style="{StaticResource Card}"
-                    Opacity="0"
-                    TranslationY="20">
-
-                    <VerticalStackLayout Spacing="6">
-                        <Label Text="Τελευταία Ανακοίνωση"
-                               Style="{StaticResource H2}" />
-
-                        <Label Text="Η προπόνηση της Παρασκευής θα γίνει στις 18:00."
-                               Style="{StaticResource Body}" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <!-- Buttons -->
-                <Button
-                    x:Name="AnnouncementsButton"
-                    Text="Όλες οι Ανακοινώσεις"
-                    Style="{StaticResource PrimaryButton}"
-                    Pressed="OnButtonPressed"
-                    Released="OnButtonReleased"/>
-
-                <Button
-                    x:Name="MatchesButton"
-                    Text="Πρόγραμμα Αγώνων"
-                    Style="{StaticResource SecondaryButton}"
-                    Pressed="OnButtonPressed"
-                    Released="OnButtonReleased"/>
-
-            </VerticalStackLayout>
+Είμαστε αφοσιωμένοι στο να ενδυναμώνουμε τους ανθρώπους μέσω της αθλητικής και πολιτιστικής δραστηριότητας και να ενώνουμε την κοινότητά μας, μέσα από την αγάπη για τον αθλητισμό και τη συνεργασία."
+                FontFamily="Baskerville"
+                FontSize="15"
+                LineHeight="1.6"
+                TextColor="{StaticResource TextSecondary}"
+                HorizontalTextAlignment="Center" />
 
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

@@ -2,11 +2,27 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ApollonVolados.Mobile.Views.TeamWebPage">
+    x:Class="ApollonVolados.Mobile.Views.TeamWebPage"
+    Title="Τμήμα"
+    Shell.NavBarIsVisible="True">
 
-    <WebView
-        x:Name="Browser"
-        HorizontalOptions="Fill"
-        VerticalOptions="Fill" />
+    <Grid>
 
+        <!-- WEB VIEW -->
+        <WebView
+            x:Name="Browser"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            Navigating="OnNavigating"
+            Navigated="OnNavigated" />
+
+        <!-- LOADING INDICATOR -->
+        <ActivityIndicator
+            x:Name="Loader"
+            IsVisible="False"
+            IsRunning="False"
+            Color="{StaticResource PrimaryGreen}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+    </Grid>
 </ContentPage>

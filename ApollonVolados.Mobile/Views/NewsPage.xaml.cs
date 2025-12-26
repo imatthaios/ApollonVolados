@@ -15,7 +15,7 @@ public partial class NewsPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        _vm.LoadCommand.Execute(null);
+        (BindingContext as NewsViewModel)?.LoadAsync();
     }
     
     private async void OnArticleTapped(object sender, EventArgs e)
@@ -32,8 +32,13 @@ public partial class NewsPage : ContentPage
         if (e.CurrentSelection.FirstOrDefault() is not NewsItemViewModel item)
             return;
 
-        await Launcher.Default.OpenAsync(item.Link);
+        if (sender is CollectionView cv &&
+            cv.SelectedItem is NewsItemViewModel)
+        {
+            var container = cv.Handler?.PlatformView;
+        }
 
+        await Launcher.Default.OpenAsync(item.Link);
         ((CollectionView)sender).SelectedItem = null;
     }
 }
