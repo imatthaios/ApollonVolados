@@ -1,9 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:ApollonVolados.Mobile.Views.Controls"
     x:Class="ApollonVolados.Mobile.Views.ClubPage"
-    Title="Σύλλογος">
+    Title="Σύλλογος"
+    BackgroundColor="{StaticResource White}">
 
     <ScrollView>
         <VerticalStackLayout
@@ -20,22 +22,28 @@
             <!-- TITLE -->
             <Label
                 Text="Αθλητικός Σύλλογος Απόλλων Βωλάδος"
-                Style="{StaticResource TitleLabel}"
+                FontSize="20"
+                FontAttributes="Bold"
+                TextColor="{StaticResource PrimaryGreen}"
                 HorizontalTextAlignment="Center" />
 
             <Label
                 Text="Ιδρύθηκε το 1924"
-                Style="{StaticResource SmallMutedLabel}"
+                FontSize="13"
+                TextColor="{StaticResource Gray600}"
                 HorizontalTextAlignment="Center" />
 
-            <!-- HISTORY -->
             <!-- TIMELINE -->
-            <Border>
+            <Border
+                BackgroundColor="{StaticResource White}"
+                StrokeShape="RoundRectangle 16"
+                Padding="16">
+
                 <VerticalStackLayout Spacing="12">
                     <Label
                         Text="🕰 Χρονολόγιο"
-                        FontAttributes="Bold"
                         FontSize="18"
+                        FontAttributes="Bold"
                         TextColor="{StaticResource PrimaryGreen}" />
 
                     <controls:TimelineSection />
@@ -43,23 +51,38 @@
             </Border>
 
             <!-- CLUB INFO -->
-            <Border>
-                <VerticalStackLayout Spacing="8">
+            <Border
+                BackgroundColor="{StaticResource White}"
+                StrokeShape="RoundRectangle 16"
+                Padding="16">
 
+                <VerticalStackLayout Spacing="8">
                     <Label
                         Text="🏟 Στοιχεία Συλλόγου"
                         FontSize="18"
                         FontAttributes="Bold"
                         TextColor="{StaticResource PrimaryGreen}" />
 
-                    <Label Text="📅 Έτος Ίδρυσης: 1924" />
-                    <Label Text="🏟 Έδρα: Δημοτικό Γήπεδο Βωλάδος" />
-                    <Label Text="🎨 Χρώματα: Πράσινο – Άσπρο" />
+                    <Label
+                        Text="📅 Έτος Ίδρυσης: 1924"
+                        TextColor="{StaticResource Gray700}" />
 
+                    <Label
+                        Text="🏟 Έδρα: Δημοτικό Γήπεδο Βωλάδος"
+                        TextColor="{StaticResource Gray700}" />
+
+                    <Label
+                        Text="🎨 Χρώματα: Πράσινο – Άσπρο"
+                        TextColor="{StaticResource Gray700}" />
                 </VerticalStackLayout>
             </Border>
-            
-            <Border>
+
+            <!-- MILESTONES -->
+            <Border
+                BackgroundColor="{StaticResource White}"
+                StrokeShape="RoundRectangle 16"
+                Padding="16">
+
                 <VerticalStackLayout Spacing="12">
                     <Label
                         Text="🏆 Σημαντικοί Σταθμοί"
@@ -72,9 +95,12 @@
             </Border>
 
             <!-- CONTACT -->
-            <Border>
-                <VerticalStackLayout Spacing="12">
+            <Border
+                BackgroundColor="{StaticResource White}"
+                StrokeShape="RoundRectangle 16"
+                Padding="16">
 
+                <VerticalStackLayout Spacing="12">
                     <Label
                         Text="📞 Επικοινωνία"
                         FontSize="18"
@@ -83,20 +109,31 @@
 
                     <Button
                         Text="📞 Τηλέφωνο"
+                        BackgroundColor="{StaticResource PrimaryGreen}"
+                        TextColor="{StaticResource White}"
+                        CornerRadius="12"
                         Command="{Binding CallCommand}" />
 
                     <Button
                         Text="✉️ Email"
+                        BackgroundColor="{StaticResource PrimaryGreen}"
+                        TextColor="{StaticResource White}"
+                        CornerRadius="12"
                         Command="{Binding EmailCommand}" />
 
                     <Button
                         Text="🌐 Website"
+                        BackgroundColor="{StaticResource PrimaryGreen}"
+                        TextColor="{StaticResource White}"
+                        CornerRadius="12"
                         Command="{Binding WebsiteCommand}" />
 
                     <Button
                         Text="📍 Χάρτης"
+                        BackgroundColor="{StaticResource PrimaryGreen}"
+                        TextColor="{StaticResource White}"
+                        CornerRadius="12"
                         Command="{Binding MapCommand}" />
-
                 </VerticalStackLayout>
             </Border>
 

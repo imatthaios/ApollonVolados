@@ -32,6 +32,13 @@ public static class MauiProgram
         builder.Services.AddTransient<TeamsPage>();
 
         builder.Services.AddTransient<TeamWebPage>();
+        
+        builder.ConfigureFonts(fonts =>
+        {
+            fonts.AddFont("PlayfairDisplay-Regular.ttf", "Playfair");
+            fonts.AddFont("PlayfairDisplay-SemiBold.ttf", "PlayfairBold");
+            fonts.AddFont("LibreBaskerville-Regular.ttf", "Baskerville");
+        });
 
         return builder.Build();
     }

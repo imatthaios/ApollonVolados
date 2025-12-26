@@ -2,44 +2,63 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="ApollonVolados.Mobile.Views.TeamsPage"
-    Title="Ομάδες">
+    Title="Ομάδες"
+    BackgroundColor="{StaticResource BackgroundColor}">
 
     <CollectionView
         ItemsSource="{Binding Categories}"
         SelectionMode="Single"
         SelectionChanged="OnSelectionChanged"
-        Margin="16">
+        Margin="16"
+        BackgroundColor="{StaticResource BackgroundColor}">
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
+
                 <Border
-                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="{StaticResource SurfaceColor}"
                     Padding="16"
                     Margin="0,8"
-                    BackgroundColor="White">
+                    StrokeShape="RoundRectangle 16">
 
-                    <Grid ColumnDefinitions="40,*" ColumnSpacing="12">
+                    <!-- Subtle separation -->
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="#0F000000"
+                            Offset="0,2"
+                            Radius="6" />
+                    </Border.Shadow>
 
+                    <Grid ColumnDefinitions="40,*"
+                          ColumnSpacing="12">
+
+                        <!-- ICON / EMOJI -->
                         <Label
                             Text="{Binding Icon}"
                             FontSize="26"
-                            VerticalOptions="Center" />
+                            VerticalOptions="Center"
+                            TextColor="{StaticResource PrimaryColor}" />
 
-                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                        <!-- TEXT -->
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            Spacing="4">
+
                             <Label
                                 Text="{Binding Title}"
                                 FontSize="18"
                                 FontAttributes="Bold"
-                                TextColor="{StaticResource PrimaryGreen}" />
+                                TextColor="{StaticResource TextPrimary}" />
 
                             <Label
                                 Text="{Binding Subtitle}"
                                 FontSize="13"
-                                TextColor="{StaticResource Gray700}" />
+                                TextColor="{StaticResource TextSecondary}" />
                         </VerticalStackLayout>
 
                     </Grid>
                 </Border>
+
             </DataTemplate>
         </CollectionView.ItemTemplate>
 

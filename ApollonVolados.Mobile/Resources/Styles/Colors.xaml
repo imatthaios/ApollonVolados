@@ -15,7 +15,7 @@
     <!-- GOLD -->
     <Color x:Key="Gold">#C9A441</Color>
     <Color x:Key="GoldSoft">#F6EED3</Color>
-
+    
     <!-- GRAYS -->
     <Color x:Key="Gray900">#2A2A2A</Color>
     <Color x:Key="Gray700">#4A4A4A</Color>
@@ -30,5 +30,4 @@
     <Color x:Key="NavIcon">#1E6F43</Color>
     
     <Color x:Key="SecondaryGold">#C9A227</Color>
-
 </ResourceDictionary>

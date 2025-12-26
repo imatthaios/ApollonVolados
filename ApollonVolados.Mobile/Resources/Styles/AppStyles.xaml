@@ -34,7 +34,7 @@
     <Style x:Key="SmallMutedLabel" TargetType="Label">
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="TextColor"
-                Value="{StaticResource Gray600}"/>
+                Value="{StaticResource TextSecondary}"/>
     </Style>
 
     <!-- BUTTONS -->

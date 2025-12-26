@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ApollonVolados.Mobile.Views.HomePage"
+    Title="Αρχική"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- ================= HEADER / HERO ================= -->
+            <Grid
+                Padding="{OnPlatform iOS='0,56,0,16', Android='0,24,0,16'}"
+                RowDefinitions="Auto,Auto"
+                BackgroundColor="{StaticResource PrimaryColor}">
+                
+                <!-- Logo (animated) -->
+                <Image
+                    x:Name="HeroLogo"
+                    Source="logo.png"
+                    HeightRequest="{OnIdiom Phone=96, Tablet=120}"
+                    HorizontalOptions="Center"
+                    Aspect="AspectFit"
+                    Opacity="0"
+                    Scale="0.9"
+                    Margin="0,8"/>
+
+                <!-- Titles -->
+                <VerticalStackLayout Grid.Row="1"
+                                     Spacing="4"
+                                     HorizontalOptions="Center">
+                    <Label
+                        Text="ΑΠΟΛΛΩΝ ΒΩΛΑΔΟΣ"
+                        FontAttributes="Bold"
+                        FontSize="{OnIdiom Phone=18, Tablet=22}"
+                        TextColor="White"
+                        HorizontalTextAlignment="Center"/>
+
+                    <Label
+                        Text="Κάρπαθος • 1924"
+                        FontSize="{OnIdiom Phone=12, Tablet=14}"
+                        TextColor="{StaticResource TextSecondary}"
+                        HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Cut / transition -->
+            <BoxView
+                HeightRequest="14"
+                BackgroundColor="{StaticResource SurfaceColor}"
+                CornerRadius="14,14,0,0"
+                Margin="0,-14,0,0"/>
+
+            <!-- ================= CONTENT ================= -->
+            <VerticalStackLayout Padding="16" Spacing="14">
+
+                <!-- Next Match Card -->
+                <Border
+                    x:Name="CardMatch"
+                    Style="{StaticResource Card}"
+                    Opacity="0"
+                    TranslationY="20">
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Επόμενος Αγώνας"
+                               Style="{StaticResource H2}" />
+
+                        <Label Text="Απόλλων Βωλάδος vs Αντίπαλος"
+                               Style="{StaticResource Body}" />
+
+                        <Label Text="Παρασκευή • 18:00"
+                               Style="{StaticResource Body}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Announcement Card -->
+                <Border
+                    x:Name="CardAnnouncement"
+                    Style="{StaticResource Card}"
+                    Opacity="0"
+                    TranslationY="20">
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Τελευταία Ανακοίνωση"
+                               Style="{StaticResource H2}" />
+
+                        <Label Text="Η προπόνηση της Παρασκευής θα γίνει στις 18:00."
+                               Style="{StaticResource Body}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Buttons -->
+                <Button
+                    x:Name="AnnouncementsButton"
+                    Text="Όλες οι Ανακοινώσεις"
+                    Style="{StaticResource PrimaryButton}"
+                    Pressed="OnButtonPressed"
+                    Released="OnButtonReleased"/>
+
+                <Button
+                    x:Name="MatchesButton"
+                    Text="Πρόγραμμα Αγώνων"
+                    Style="{StaticResource SecondaryButton}"
+                    Pressed="OnButtonPressed"
+                    Released="OnButtonReleased"/>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

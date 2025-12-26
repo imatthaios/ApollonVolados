@@ -22,6 +22,8 @@ public partial class NewsItemViewModel : ObservableObject
     public string Link => _post.Link;
 
     public DateTime PublishedDate => _post.Date;
+    
+    public bool IsFirst { get; set; }
 
     public string PublishedDateText =>
         PublishedDate.ToString("dd MMM yyyy", new CultureInfo("el-GR"));
