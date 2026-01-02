@@ -9,8 +9,14 @@
     Shell.TabBarForegroundColor="{StaticResource PrimaryGreen}"
     Shell.TabBarUnselectedColor="#9BBFB1">
 
+    <!-- Splash -->
+    <ShellContent
+        Route="splash"
+        ContentTemplate="{DataTemplate views:AnimatedSplashPage}" />
+    
     <TabBar>
         <ShellContent
+            Route="home"
             Title="Αρχική"
             Icon="home.svg"
             ContentTemplate="{DataTemplate views:HomePage}" />

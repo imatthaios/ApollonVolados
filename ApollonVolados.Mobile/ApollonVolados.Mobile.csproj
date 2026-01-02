@@ -19,8 +19,8 @@
 
   <ItemGroup>
     <MauiSplashScreen
-            Include="Resources/Images/apollon_logo.png"
-            Color="#FFFFFF"
+            Include="Resources\Splash\appsplash.png"
+            Color="#1E6F43"
             BaseSize="512,512" />
   </ItemGroup>
 

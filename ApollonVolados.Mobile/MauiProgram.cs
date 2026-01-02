@@ -10,9 +10,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
-
-        builder.UseMauiApp<App>();
-
+        
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
@@ -34,7 +32,9 @@ public static class MauiProgram
 
         builder.Services.AddTransient<TeamWebPage>();
         
-        builder.ConfigureFonts(fonts =>
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
         {
             fonts.AddFont("PlayfairDisplay-Regular.ttf", "Playfair");
             fonts.AddFont("PlayfairDisplay-SemiBold.ttf", "PlayfairBold");
