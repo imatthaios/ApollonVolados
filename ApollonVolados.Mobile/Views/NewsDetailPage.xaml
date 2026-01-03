@@ -1,0 +1,26 @@
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ApollonVolados.Mobile.Views.NewsDetailPage"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource BackgroundColor}">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Back button -->
+        <Grid Padding="12">
+            <Button
+                Text="← Πίσω"
+                Style="{StaticResource PrimaryButton}"
+                HorizontalOptions="Start"
+                Clicked="OnBackClicked"/>
+        </Grid>
+
+        <!-- Web -->
+        <WebView
+            x:Name="Browser"
+            Grid.Row="1"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"/>
+    </Grid>
+</ContentPage>
