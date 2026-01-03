@@ -4,13 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:ApollonVolados.Mobile.Views.Controls"
     x:Class="ApollonVolados.Mobile.Views.ClubPage"
-    Title="Σύλλογος"
-    BackgroundColor="{StaticResource White}">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="Σύλλογος">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="24"
-            Spacing="24">
+        <VerticalStackLayout Padding="24" Spacing="20">
 
             <!-- LOGO -->
             <Image
@@ -22,122 +21,68 @@
             <!-- TITLE -->
             <Label
                 Text="Αθλητικός Σύλλογος Απόλλων Βωλάδος"
-                FontSize="20"
-                FontAttributes="Bold"
-                TextColor="{StaticResource PrimaryGreen}"
+                Style="{StaticResource TitleLabel}"
                 HorizontalTextAlignment="Center" />
 
             <Label
                 Text="Ιδρύθηκε το 1924"
-                FontSize="13"
-                TextColor="{StaticResource Gray600}"
+                Style="{StaticResource SmallMutedLabel}"
                 HorizontalTextAlignment="Center" />
 
             <!-- TIMELINE -->
-            <Border
-                BackgroundColor="{StaticResource White}"
-                StrokeShape="RoundRectangle 16"
-                Padding="16">
+            <Border Style="{StaticResource Card}">
+                <Border.Shadow>
+                    <Shadow Brush="{StaticResource ShadowColor}" Offset="0,2" Radius="8" />
+                </Border.Shadow>
 
                 <VerticalStackLayout Spacing="12">
-                    <Label
-                        Text="🕰 Χρονολόγιο"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource PrimaryGreen}" />
-
+                    <Label Text="🕰 Χρονολόγιο" Style="{StaticResource SectionHeader}" />
                     <controls:TimelineSection />
                 </VerticalStackLayout>
             </Border>
 
             <!-- CLUB INFO -->
-            <Border
-                BackgroundColor="{StaticResource White}"
-                StrokeShape="RoundRectangle 16"
-                Padding="16">
+            <Border Style="{StaticResource Card}">
+                <Border.Shadow>
+                    <Shadow Brush="{StaticResource ShadowColor}" Offset="0,2" Radius="8" />
+                </Border.Shadow>
 
-                <VerticalStackLayout Spacing="8">
-                    <Label
-                        Text="🏟 Στοιχεία Συλλόγου"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource PrimaryGreen}" />
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🏟 Στοιχεία Συλλόγου" Style="{StaticResource SectionHeader}" />
 
-                    <Label
-                        Text="📅 Έτος Ίδρυσης: 1924"
-                        TextColor="{StaticResource Gray700}" />
-
-                    <Label
-                        Text="🏟 Έδρα: Δημοτικό Γήπεδο Βωλάδος"
-                        TextColor="{StaticResource Gray700}" />
-
-                    <Label
-                        Text="🎨 Χρώματα: Πράσινο – Άσπρο"
-                        TextColor="{StaticResource Gray700}" />
+                    <Label Text="📅 Έτος Ίδρυσης: 1924" Style="{StaticResource Body}" />
+                    <Label Text="🏟 Έδρα: Δημοτικό Γήπεδο Βωλάδος" Style="{StaticResource Body}" />
+                    <Label Text="🎨 Χρώματα: Πράσινο – Άσπρο" Style="{StaticResource Body}" />
                 </VerticalStackLayout>
             </Border>
 
             <!-- MILESTONES -->
-            <Border
-                BackgroundColor="{StaticResource White}"
-                StrokeShape="RoundRectangle 16"
-                Padding="16">
+            <Border Style="{StaticResource Card}">
+                <Border.Shadow>
+                    <Shadow Brush="{StaticResource ShadowColor}" Offset="0,2" Radius="8" />
+                </Border.Shadow>
 
                 <VerticalStackLayout Spacing="12">
-                    <Label
-                        Text="🏆 Σημαντικοί Σταθμοί"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource PrimaryGreen}" />
-
+                    <Label Text="🏆 Σημαντικοί Σταθμοί" Style="{StaticResource SectionHeader}" />
                     <controls:MilestonesSection />
                 </VerticalStackLayout>
             </Border>
 
             <!-- CONTACT -->
-            <Border
-                BackgroundColor="{StaticResource White}"
-                StrokeShape="RoundRectangle 16"
-                Padding="16">
+            <Border Style="{StaticResource Card}">
+                <Border.Shadow>
+                    <Shadow Brush="{StaticResource ShadowColor}" Offset="0,2" Radius="8" />
+                </Border.Shadow>
 
-                <VerticalStackLayout Spacing="12">
-                    <Label
-                        Text="📞 Επικοινωνία"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource PrimaryGreen}" />
-
-                    <Button
-                        Text="📞 Τηλέφωνο"
-                        BackgroundColor="{StaticResource PrimaryGreen}"
-                        TextColor="{StaticResource White}"
-                        CornerRadius="12"
-                        Command="{Binding CallCommand}" />
-
-                    <Button
-                        Text="✉️ Email"
-                        BackgroundColor="{StaticResource PrimaryGreen}"
-                        TextColor="{StaticResource White}"
-                        CornerRadius="12"
-                        Command="{Binding EmailCommand}" />
-
-                    <Button
-                        Text="🌐 Website"
-                        BackgroundColor="{StaticResource PrimaryGreen}"
-                        TextColor="{StaticResource White}"
-                        CornerRadius="12"
-                        Command="{Binding WebsiteCommand}" />
-
-                    <Button
-                        Text="📍 Χάρτης"
-                        BackgroundColor="{StaticResource PrimaryGreen}"
-                        TextColor="{StaticResource White}"
-                        CornerRadius="12"
-                        Command="{Binding MapCommand}" />
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="📞 Επικοινωνία" Style="{StaticResource SectionHeader}" />
+                    <Button Text="📞 Τηλέφωνο" Style="{StaticResource PrimaryButton}" Command="{Binding CallCommand}" />
+                    <Button Text="✉️ Email"     Style="{StaticResource PrimaryButton}" Command="{Binding EmailCommand}" />
+                    <Button Text="🌐 Website"   Style="{StaticResource PrimaryButton}" Command="{Binding WebsiteCommand}" />
+                    <Button Text="📍 Χάρτης"    Style="{StaticResource PrimaryButton}" Command="{Binding MapCommand}" />
                 </VerticalStackLayout>
             </Border>
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

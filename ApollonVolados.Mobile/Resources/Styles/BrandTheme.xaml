@@ -3,14 +3,22 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!-- ================= COLORS ================= -->
+    <!-- ================= COLORS (single source of truth) ================= -->
 
     <!-- Brand -->
     <Color x:Key="PrimaryColor">#1F6E4B</Color>
 
+    <!-- Aliases (για να μη σκάει από παλιά keys) -->
+    <Color x:Key="PrimaryGreen">#1F6E4B</Color>
+
     <!-- Text -->
     <Color x:Key="TextPrimary">#1F6E4B</Color>
     <Color x:Key="TextSecondary">#4F7F66</Color>
+
+    <!-- Aliases (για Timeline/Milestones που έγραφαν Gray...) -->
+    <Color x:Key="Gray900">#1F6E4B</Color>
+    <Color x:Key="Gray700">#4F7F66</Color>
+    <Color x:Key="Gray600">#4F7F66</Color>
 
     <!-- Surfaces -->
     <Color x:Key="BackgroundColor">#FFFFFF</Color>
@@ -18,10 +26,30 @@
 
     <!-- Dividers / placeholders -->
     <Color x:Key="DividerColor">#E6EDE9</Color>
-    <Color x:Key="SkeletonColor">#EDEDED</Color>
+    <Color x:Key="SkeletonColor">#EEF3F0</Color>
+    <Color x:Key="ImagePlaceholderColor">#EEF3F0</Color>
 
-    <!-- ================= TYPOGRAPHY ================= -->
+    <!-- Shadow -->
+    <Color x:Key="ShadowColor">#14000000</Color>
 
+    <!-- ================= TYPOGRAPHY / COMMON STYLES ================= -->
+
+    <!-- Big title (π.χ. ClubPage) -->
+    <Style x:Key="TitleLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="PlayfairBold" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=18, Tablet=22}" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="LineHeight" Value="1.2" />
+    </Style>
+
+    <Style x:Key="SmallMutedLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="Baskerville" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
+        <Setter Property="CharacterSpacing" Value="0.4" />
+    </Style>
+
+    <!-- Articles -->
     <Style x:Key="ArticleTitle" TargetType="Label">
         <Setter Property="FontFamily" Value="PlayfairBold" />
         <Setter Property="FontSize" Value="{OnIdiom Phone=16, Tablet=18}" />
@@ -29,35 +57,29 @@
         <Setter Property="LineHeight" Value="1.2" />
     </Style>
 
-    <Style x:Key="BodyLabel" TargetType="Label">
-        <Setter Property="FontFamily" Value="Baskerville" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
-    </Style>
-
-    <Style x:Key="MutedLabel" TargetType="Label">
+    <Style x:Key="ArticleMeta" TargetType="Label">
         <Setter Property="FontFamily" Value="Baskerville" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
-        <Setter Property="CharacterSpacing" Value="0.5" />
+        <Setter Property="CharacterSpacing" Value="0.4" />
     </Style>
 
-    <!-- ================= HEADINGS ================= -->
-
-    <Style x:Key="H2" TargetType="Label">
-        <Setter Property="FontFamily" Value="PlayfairBold" />
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
-    </Style>
-
+    <!-- Body -->
     <Style x:Key="Body" TargetType="Label">
         <Setter Property="FontFamily" Value="Baskerville" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="LineHeight" Value="1.25" />
+    </Style>
+
+    <!-- Section header -->
+    <Style x:Key="SectionHeader" TargetType="Label">
+        <Setter Property="FontFamily" Value="PlayfairBold" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
     </Style>
 
     <!-- ================= CARDS ================= -->
-
     <Style x:Key="Card" TargetType="Border">
         <Setter Property="BackgroundColor" Value="{StaticResource SurfaceColor}" />
         <Setter Property="Padding" Value="16" />
@@ -66,10 +88,9 @@
     </Style>
 
     <!-- ================= BUTTONS ================= -->
-
     <Style x:Key="PrimaryButton" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
-        <Setter Property="TextColor" Value="White" />
+        <Setter Property="TextColor" Value="{StaticResource BackgroundColor}" />
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="14,10" />
         <Setter Property="FontAttributes" Value="Bold" />
@@ -83,34 +104,6 @@
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="14,10" />
         <Setter Property="FontAttributes" Value="Bold" />
-    </Style>
-    
-    <!-- ================= ARTICLE META ================= -->
-    <Style x:Key="ArticleMeta" TargetType="Label">
-        <Setter Property="FontFamily" Value="Baskerville" />
-        <Setter Property="FontSize" Value="12" />
-        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
-        <Setter Property="CharacterSpacing" Value="0.5" />
-    </Style>
-    
-    <!-- ================= EXTRA COLORS (ALIASES) ================= -->
-
-    <!-- Alias για συμβατότητα με παλιό XAML -->
-    <Color x:Key="PrimaryGreen">#1F6E4B</Color>
-
-    <!-- ================= EXTRA LABEL STYLES ================= -->
-
-    <Style x:Key="TitleLabel" TargetType="Label">
-        <Setter Property="FontFamily" Value="PlayfairBold" />
-        <Setter Property="FontSize" Value="20" />
-        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
-        <Setter Property="LineHeight" Value="1.2" />
-    </Style>
-
-    <Style x:Key="SmallMutedLabel" TargetType="Label">
-        <Setter Property="FontFamily" Value="Baskerville" />
-        <Setter Property="FontSize" Value="13" />
-        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
     </Style>
 
 </ResourceDictionary>

@@ -3,43 +3,41 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="ApollonVolados.Mobile.Views.TeamWebPage"
-    Shell.NavBarIsVisible="False"
-    BackgroundColor="{StaticResource BackgroundColor}">
+    Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,*">
+    <Grid>
 
-        <!-- 🔙 BACK BUTTON BAR -->
-        <Grid
-            Padding="12"
-            BackgroundColor="{StaticResource BackgroundColor}"
-            ColumnDefinitions="Auto,*">
+        <!-- PROGRESS BAR -->
+        <ProgressBar
+            x:Name="LoadingProgress"
+            Progress="0"
+            IsVisible="False"
+            HeightRequest="3"
+            BackgroundColor="Transparent"
+            ProgressColor="{StaticResource PrimaryGreen}"
+            VerticalOptions="Start" />
 
-            <Button
-                Text="← Πίσω"
-                Style="{StaticResource PrimaryButton}"
-                Clicked="OnBackClicked"
-                HorizontalOptions="Start" />
-        </Grid>
+        <!-- WEB VIEW -->
+        <WebView
+            x:Name="Browser"
+            Navigating="OnNavigating"
+            Navigated="OnNavigated"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill" />
 
-        <!-- 🌐 WEB CONTENT -->
-        <Grid Grid.Row="1">
-
-            <WebView
-                x:Name="Browser"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                Navigating="OnNavigating"
-                Navigated="OnNavigated" />
-
-            <!-- ⏳ LOADER -->
-            <ActivityIndicator
-                x:Name="Loader"
-                IsVisible="False"
-                IsRunning="False"
-                Color="{StaticResource PrimaryGreen}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
-        </Grid>
+        <!-- BACK BUTTON (overlay cinematic) -->
+        <Button
+            Text="← Πίσω"
+            FontSize="20"
+            WidthRequest="44"
+            HeightRequest="44"
+            CornerRadius="22"
+            BackgroundColor="#CCFFFFFF"
+            TextColor="{StaticResource PrimaryGreen}"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            Margin="16"
+            Clicked="OnBackClicked" />
 
     </Grid>
 </ContentPage>

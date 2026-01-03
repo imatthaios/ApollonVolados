@@ -5,7 +5,7 @@
     xmlns:views="clr-namespace:ApollonVolados.Mobile.Views"
     x:Class="ApollonVolados.Mobile.AppShell"
     Shell.NavBarIsVisible="False"
-    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarBackgroundColor="{StaticResource BackgroundColor}"
     Shell.TabBarForegroundColor="{StaticResource PrimaryGreen}"
     Shell.TabBarUnselectedColor="#9BBFB1">
 

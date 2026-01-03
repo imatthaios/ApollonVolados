@@ -1,12 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="ApollonVolados.Mobile.Views.Controls.TimelineSection">
 
-    <CollectionView
-        ItemsSource="{Binding Events}"
-        SelectionMode="None">
-
+    <CollectionView ItemsSource="{Binding Events}" SelectionMode="None">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Grid ColumnDefinitions="30,*" Padding="0,12">
@@ -31,10 +29,7 @@
                     </Grid>
 
                     <!-- CONTENT -->
-                    <VerticalStackLayout
-                        Grid.Column="1"
-                        Spacing="4"
-                        Padding="12,0">
+                    <VerticalStackLayout Grid.Column="1" Spacing="4" Padding="12,0">
 
                         <Label
                             Text="{Binding Year}"
@@ -44,7 +39,8 @@
 
                         <Label
                             Text="{Binding Title}"
-                            FontAttributes="Bold" />
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource TextPrimary}" />
 
                         <Label
                             Text="{Binding Description}"
@@ -52,11 +48,8 @@
                             TextColor="{StaticResource TextSecondary}" />
 
                     </VerticalStackLayout>
-
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
-
     </CollectionView>
-
 </ContentView>

@@ -4,57 +4,47 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="ApollonVolados.Mobile.Views.Controls.MilestonesSection">
 
-    <CollectionView
-        ItemsSource="{Binding Items}"
-        SelectionMode="None">
-
+    <CollectionView ItemsSource="{Binding Items}" SelectionMode="None">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Border
                     StrokeShape="RoundRectangle 14"
                     Padding="14"
                     Margin="0,6"
-                    BackgroundColor="{StaticResource White}">
+                    BackgroundColor="{StaticResource SurfaceColor}"
+                    Stroke="{StaticResource DividerColor}">
+
                     <Grid ColumnDefinitions="50,*">
 
-                        <!-- ICON -->
                         <Label
                             Text="{Binding Icon}"
                             FontSize="26"
                             VerticalOptions="Center"
                             HorizontalOptions="Center"
-                            TextColor="{StaticResource Gold}" />
+                            TextColor="{StaticResource PrimaryGreen}" />
 
-                        <!-- TEXT -->
                         <VerticalStackLayout Grid.Column="1" Spacing="2">
-
-                            <!-- YEAR -->
                             <Label
                                 Text="{Binding Year}"
                                 FontSize="12"
                                 FontAttributes="Bold"
-                                TextColor="{StaticResource Gray600}" />
+                                TextColor="{StaticResource TextSecondary}" />
 
-                            <!-- TITLE -->
                             <Label
                                 Text="{Binding Title}"
                                 FontSize="16"
                                 FontAttributes="Bold"
                                 TextColor="{StaticResource PrimaryGreen}" />
 
-                            <!-- DESCRIPTION -->
                             <Label
                                 Text="{Binding Description}"
                                 FontSize="13"
-                                TextColor="{StaticResource Gray700}" />
-
+                                TextColor="{StaticResource TextSecondary}" />
                         </VerticalStackLayout>
 
                     </Grid>
                 </Border>
             </DataTemplate>
         </CollectionView.ItemTemplate>
-
     </CollectionView>
-
 </ContentView>

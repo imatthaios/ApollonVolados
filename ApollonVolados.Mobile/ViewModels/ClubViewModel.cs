@@ -13,7 +13,7 @@ public partial class ClubViewModel : ObservableObject
 
     [RelayCommand]
     async Task Call()
-        => await Launcher.OpenAsync("tel:2423099999"); // άλλαξε αν χρειάζεται
+        => await Launcher.OpenAsync("tel:+306974902831");
 
     [RelayCommand]
     async Task Email()
