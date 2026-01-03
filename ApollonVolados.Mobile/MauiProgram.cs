@@ -18,6 +18,7 @@ public static class MauiProgram
         builder.Services.AddHttpClient();
 
         builder.Services.AddSingleton<WordPressService>();
+        builder.Services.AddSingleton<NewsCacheService>();
         
         builder.Services.AddTransient<NewsViewModel>();
         builder.Services.AddTransient<NewsPage>();
