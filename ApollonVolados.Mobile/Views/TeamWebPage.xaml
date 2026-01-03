@@ -3,26 +3,43 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="ApollonVolados.Mobile.Views.TeamWebPage"
-    Title="Τμήμα"
-    Shell.NavBarIsVisible="True">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource BackgroundColor}">
 
-    <Grid>
+    <Grid RowDefinitions="Auto,*">
 
-        <!-- WEB VIEW -->
-        <WebView
-            x:Name="Browser"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill"
-            Navigating="OnNavigating"
-            Navigated="OnNavigated" />
+        <!-- 🔙 BACK BUTTON BAR -->
+        <Grid
+            Padding="12"
+            BackgroundColor="{StaticResource BackgroundColor}"
+            ColumnDefinitions="Auto,*">
 
-        <!-- LOADING INDICATOR -->
-        <ActivityIndicator
-            x:Name="Loader"
-            IsVisible="False"
-            IsRunning="False"
-            Color="{StaticResource PrimaryGreen}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center" />
+            <Button
+                Text="← Πίσω"
+                Style="{StaticResource PrimaryButton}"
+                Clicked="OnBackClicked"
+                HorizontalOptions="Start" />
+        </Grid>
+
+        <!-- 🌐 WEB CONTENT -->
+        <Grid Grid.Row="1">
+
+            <WebView
+                x:Name="Browser"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Navigating="OnNavigating"
+                Navigated="OnNavigated" />
+
+            <!-- ⏳ LOADER -->
+            <ActivityIndicator
+                x:Name="Loader"
+                IsVisible="False"
+                IsRunning="False"
+                Color="{StaticResource PrimaryGreen}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Grid>
+
     </Grid>
 </ContentPage>

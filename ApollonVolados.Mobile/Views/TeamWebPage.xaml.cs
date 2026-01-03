@@ -1,5 +1,3 @@
-using Microsoft.Maui.Controls;
-
 namespace ApollonVolados.Mobile.Views;
 
 [QueryProperty(nameof(Url), "url")]
@@ -32,13 +30,18 @@ public partial class TeamWebPage : ContentPage
 
     private void OnNavigating(object sender, WebNavigatingEventArgs e)
     {
-        Loader.IsRunning = true;
         Loader.IsVisible = true;
+        Loader.IsRunning = true;
     }
 
     private void OnNavigated(object sender, WebNavigatedEventArgs e)
     {
         Loader.IsRunning = false;
         Loader.IsVisible = false;
+    }
+
+    private async void OnBackClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("..");
     }
 }

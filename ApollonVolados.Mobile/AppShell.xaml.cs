@@ -1,5 +1,4 @@
 ﻿using ApollonVolados.Mobile.Views;
-using Microsoft.Maui.Controls;
 
 namespace ApollonVolados.Mobile;
 
