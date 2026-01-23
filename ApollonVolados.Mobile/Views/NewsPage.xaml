@@ -18,9 +18,14 @@
             ItemSizingStrategy="MeasureFirstItem">
 
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout
+                <!-- <LinearItemsLayout -->
+                <!--     Orientation="Vertical" -->
+                <!--     ItemSpacing="16" /> -->
+                <GridItemsLayout 
                     Orientation="Vertical"
-                    ItemSpacing="16" />
+                    Span="{OnIdiom Phone=1, Tablet=2, Desktop=3}" 
+                    VerticalItemSpacing="16"
+                    HorizontalItemSpacing="16" />
             </CollectionView.ItemsLayout>
 
             <!-- ================= EMPTY / LOADING SKELETON ================= -->

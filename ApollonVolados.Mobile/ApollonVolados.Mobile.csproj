@@ -13,9 +13,9 @@
 
   <ItemGroup>
     <MauiIcon
-            Include="Resources/AppIcon/appiconfg.svg"
-            ForegroundFile="Resources/AppIcon/appicon.png"
-            Color="#FFFFFF" />
+            Include="Resources\AppIcon\appicon.svg"
+            ForegroundFile="Resources\AppIcon\appiconfg.svg"
+            Color="#1E6F43" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,5 +36,10 @@
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="sqlite-net-pcl" />
   </ItemGroup>
-</Project>
 
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\opt\dotnet\packs\Microsoft.Android.Ref.34\34.0.154\ref\net8.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

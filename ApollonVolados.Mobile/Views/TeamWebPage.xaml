@@ -36,8 +36,15 @@
             TextColor="{StaticResource PrimaryGreen}"
             HorizontalOptions="Start"
             VerticalOptions="Start"
-            Margin="16"
-            Clicked="OnBackClicked" />
+            Clicked="OnBackClicked">
+    
+            <Button.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="16, 60, 16, 16" />
+                    <On Platform="Android" Value="16" />
+                </OnPlatform>
+            </Button.Margin>
+        </Button>
 
     </Grid>
 </ContentPage>

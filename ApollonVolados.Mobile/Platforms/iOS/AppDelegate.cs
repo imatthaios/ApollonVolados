@@ -1,6 +1,10 @@
+using Android.Runtime;
+using Foundation;
+
 namespace ApollonVolados.Mobile;
 
-public class AppDelegate
+[Register("AppDelegate")]
+public class AppDelegate : MauiUIApplicationDelegate
 {
-    
+    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 }

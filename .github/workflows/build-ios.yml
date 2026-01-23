@@ -1,0 +1,40 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [ "master", "main", "net8-prod" ] # Add your working branch
+  workflow_dispatch: # Allows manual trigger button
+
+jobs:
+  build:
+    runs-on: macos-13 # We use GitHub's virtual Mac
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Install MAUI Workload
+      run: dotnet workload install maui-ios
+      
+    - name: Publish iOS App (Unsigned)
+      # This builds the .ipa without requiring a paid Apple Developer certificate immediately.
+      # Sideloadly (or AltStore) will handle the signing later.
+      run: |
+        dotnet publish ApollonVolados.Mobile/ApollonVolados.Mobile.csproj \
+        -f net8.0-ios \
+        -c Release \
+        -p:ArchiveOnBuild=true \
+        -p:EnableAssemblyILStripping=false \
+        -p:CodesignKey="Apple Development: Created via API (Do Not Use)" \
+        -p:CodesignProvision="Created via API (Do Not Use)" \
+        -o build_output
+      
+    - name: Upload IPA Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ios-app-unsigned
+        path: build_output/**/*.ipa
