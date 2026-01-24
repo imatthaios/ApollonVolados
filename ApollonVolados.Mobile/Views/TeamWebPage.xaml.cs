@@ -32,33 +32,27 @@ public partial class TeamWebPage : ContentPage
 
     private void OnNavigating(object sender, WebNavigatingEventArgs e)
     {
-        LoadingProgress.Progress = 0;
+        // Show loader immediately
         LoadingProgress.IsVisible = true;
-
-        _ = AnimateProgressAsync();
+        LoadingProgress.Progress = 0.3; // Jump to start to show activity
     }
 
     private void OnNavigated(object sender, WebNavigatedEventArgs e)
     {
-        LoadingProgress.Progress = 1;
+        // Finish progress
+        LoadingProgress.Progress = 1.0;
 
-        Device.StartTimer(TimeSpan.FromMilliseconds(200), () =>
+        // Hide after a short delay using modern Dispatcher
+        Dispatcher.StartTimer(TimeSpan.FromMilliseconds(200), () =>
         {
             LoadingProgress.IsVisible = false;
             LoadingProgress.Progress = 0;
-            return false;
+            return false; // Stop timer
         });
     }
 
-    private async Task AnimateProgressAsync()
-    {
-        // fake smooth progress μέχρι ~85%
-        while (LoadingProgress.IsVisible && LoadingProgress.Progress < 0.85)
-        {
-            LoadingProgress.Progress += 0.03;
-            await Task.Delay(40);
-        }
-    }
+    // REMOVED: AnimateProgressAsync() - Faking progress is bad UX and causes infinite loops.
+    // The webview will naturally fire OnNavigated when done.
 
     private async void OnBackClicked(object sender, EventArgs e)
     {

@@ -2,13 +2,14 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ApollonVolados.Mobile.ViewModels"
     x:Class="ApollonVolados.Mobile.Views.NewsPage"
+    x:DataType="vm:NewsViewModel"
     Title="Νέα"
     BackgroundColor="{StaticResource SurfaceColor}">
 
     <Grid>
 
-        <!-- ================= NEWS LIST ================= -->
         <CollectionView
             ItemsSource="{Binding Posts}"
             SelectionMode="Single"
@@ -18,9 +19,6 @@
             ItemSizingStrategy="MeasureFirstItem">
 
             <CollectionView.ItemsLayout>
-                <!-- <LinearItemsLayout -->
-                <!--     Orientation="Vertical" -->
-                <!--     ItemSpacing="16" /> -->
                 <GridItemsLayout 
                     Orientation="Vertical"
                     Span="{OnIdiom Phone=1, Tablet=2, Desktop=3}" 
@@ -28,7 +26,6 @@
                     HorizontalItemSpacing="16" />
             </CollectionView.ItemsLayout>
 
-            <!-- ================= EMPTY / LOADING SKELETON ================= -->
             <CollectionView.EmptyView>
                 <VerticalStackLayout Spacing="16" Padding="12">
                     <Border
@@ -46,15 +43,13 @@
                 </VerticalStackLayout>
             </CollectionView.EmptyView>
 
-            <!-- ================= ARTICLE CARD ================= -->
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="vm:NewsItemViewModel">
                     <Border
                         BackgroundColor="{StaticResource SurfaceColor}"
                         Padding="14"
                         StrokeShape="RoundRectangle 18">
 
-                        <!-- SUBTLE SHADOW -->
                         <Border.Shadow>
                             <Shadow
                                 Brush="#14000000"
@@ -64,7 +59,6 @@
 
                         <Grid ColumnDefinitions="96,*" ColumnSpacing="14">
 
-                            <!-- IMAGE -->
                             <Border
                                 HeightRequest="88"
                                 WidthRequest="88"
@@ -76,7 +70,6 @@
                                     Aspect="AspectFill" />
                             </Border>
 
-                            <!-- CONTENT -->
                             <Grid Grid.Column="1" RowDefinitions="*,Auto">
 
                                 <Label
@@ -100,7 +93,6 @@
 
         </CollectionView>
 
-        <!-- ================= LOADING OVERLAY ================= -->
         <Grid
             IsVisible="{Binding IsBusy}"
             BackgroundColor="#80FFFFFF">

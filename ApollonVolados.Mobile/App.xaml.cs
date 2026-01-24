@@ -8,7 +8,7 @@ public partial class App : Application
 	{
 		InitializeComponent();
 		Routing.RegisterRoute(nameof(TeamWebPage), typeof(TeamWebPage));
-	}
+    }
 
 	protected override Window CreateWindow(IActivationState? activationState)
 	{
