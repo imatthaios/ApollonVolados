@@ -5,63 +5,101 @@
     Title="Ομάδες"
     BackgroundColor="{StaticResource BackgroundColor}">
 
-    <CollectionView
-        ItemsSource="{Binding Categories}"
-        SelectionMode="Single"
-        SelectionChanged="OnSelectionChanged"
-        Margin="16"
-        BackgroundColor="{StaticResource BackgroundColor}">
+    <Grid>
+        <BoxView 
+            Color="{StaticResource PrimaryColor}" 
+            Opacity="0.05" 
+            HeightRequest="200" 
+            VerticalOptions="Start" 
+            HorizontalOptions="Fill" />
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
+        <CollectionView
+            ItemsSource="{Binding Categories}"
+            SelectionMode="Single"
+            SelectionChanged="OnSelectionChanged"
+            Margin="16">
 
-                <Border
-                    BackgroundColor="{StaticResource SurfaceColor}"
-                    Padding="16"
-                    Margin="0,8"
-                    StrokeShape="RoundRectangle 16">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout 
+                    Orientation="Vertical"
+                    Span="{OnIdiom Phone=1, Tablet=2, Desktop=3}"
+                    HorizontalItemSpacing="12"
+                    VerticalItemSpacing="12" />
+            </CollectionView.ItemsLayout>
 
-                    <!-- Subtle separation -->
-                    <Border.Shadow>
-                        <Shadow
-                            Brush="#0F000000"
-                            Offset="0,2"
-                            Radius="6" />
-                    </Border.Shadow>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
 
-                    <Grid ColumnDefinitions="40,*"
-                          ColumnSpacing="12">
+                    <Border
+                        BackgroundColor="{StaticResource SurfaceColor}"
+                        Padding="16"
+                        StrokeShape="RoundRectangle 16"
+                        StrokeThickness="0"
+                        HeightRequest="90"> 
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="#1A000000"
+                                Offset="0,4"
+                                Radius="6" />
+                        </Border.Shadow>
 
-                        <!-- ICON / EMOJI -->
-                        <Label
-                            Text="{Binding Icon}"
-                            FontSize="26"
-                            VerticalOptions="Center"
-                            TextColor="{StaticResource PrimaryColor}" />
+                        <Grid ColumnDefinitions="50,*" ColumnSpacing="12">
+                            
+                            <Border 
+                                Grid.Column="0"
+                                HeightRequest="50"
+                                WidthRequest="50"
+                                StrokeShape="RoundRectangle 25"
+                                BackgroundColor="{StaticResource PrimaryColor}"
+                                StrokeThickness="0"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                                <Label
+                                    Text="{Binding Icon}"
+                                    FontSize="24"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TextColor="White" />
+                            </Border>
 
-                        <!-- TEXT -->
-                        <VerticalStackLayout
-                            Grid.Column="1"
-                            Spacing="4">
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                Spacing="2">
 
-                            <Label
-                                Text="{Binding Title}"
-                                FontSize="18"
-                                FontAttributes="Bold"
-                                TextColor="{StaticResource TextPrimary}" />
+                                <Label
+                                    Text="{Binding Title}"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{StaticResource TextPrimary}" />
 
-                            <Label
-                                Text="{Binding Subtitle}"
-                                FontSize="13"
-                                TextColor="{StaticResource TextSecondary}" />
-                        </VerticalStackLayout>
+                                <Label
+                                    Text="{Binding Subtitle}"
+                                    FontSize="12"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{StaticResource TextSecondary}" />
+                            </VerticalStackLayout>
+                            
+                            <Label 
+                                Grid.Column="1"
+                                Text="›"
+                                FontSize="24"
+                                TextColor="{StaticResource TextSecondary}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Margin="0,0,4,0"/>
 
-                    </Grid>
-                </Border>
+                        </Grid>
+                    </Border>
 
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-    </CollectionView>
+            <CollectionView.Footer>
+                <BoxView HeightRequest="20" Color="Transparent" />
+            </CollectionView.Footer>
 
+        </CollectionView>
+    </Grid>
 </ContentPage>

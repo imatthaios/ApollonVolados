@@ -18,22 +18,22 @@
         <ShellContent
             Route="home"
             Title="Αρχική"
-            Icon="home.svg"
+            Icon="home.png"
             ContentTemplate="{DataTemplate views:HomePage}" />
 
         <ShellContent
             Title="Νέα"
-            Icon="news.svg"
+            Icon="news.png"
             ContentTemplate="{DataTemplate views:NewsPage}" />
 
         <ShellContent
             Title="Τμήματα"
-            Icon="matches.svg"
+            Icon="matches.png"
             ContentTemplate="{DataTemplate views:TeamsPage}" />
 
         <ShellContent
             Title="Σύλλογος"
-            Icon="info.svg"
+            Icon="info.png"
             ContentTemplate="{DataTemplate views:ClubPage}" />
     </TabBar>
 </Shell>

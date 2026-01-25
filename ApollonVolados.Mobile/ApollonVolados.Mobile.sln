@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApollonVolados.Mobile", "ApollonVolados.Mobile.csproj", "{B7A584A4-9121-0310-A5F1-11ECA3706B68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7A584A4-9121-0310-A5F1-11ECA3706B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A584A4-9121-0310-A5F1-11ECA3706B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A584A4-9121-0310-A5F1-11ECA3706B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A584A4-9121-0310-A5F1-11ECA3706B68}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {016F29E2-DB13-46A5-BA04-6A5BC6488D73}
+	EndGlobalSection
+EndGlobal

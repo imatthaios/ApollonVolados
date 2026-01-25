@@ -13,18 +13,62 @@ public partial class ClubViewModel : ObservableObject
 
     [RelayCommand]
     async Task Call()
-        => await Launcher.OpenAsync("tel:+306974902831");
+    {
+        try
+        {
+            // Checks if the device can actually make calls (prevents crash on iPad/Simulator)
+            if (PhoneDialer.Default.IsSupported)
+                PhoneDialer.Default.Open("+306974902831");
+            else
+                await Launcher.OpenAsync("tel:+306974902831");
+        }
+        catch (Exception)
+        {
+            await Shell.Current.DisplayAlert("Info", "Cannot make calls on this device (Simulator).", "OK");
+        }
+    }
 
     [RelayCommand]
     async Task Email()
-        => await Launcher.OpenAsync("mailto:info@apollonvolados.gr");
+    {
+        try
+        {
+            // Tries to open the native mail app
+            await Launcher.OpenAsync("mailto:info@apollonvolados.gr");
+        }
+        catch (Exception)
+        {
+            // Catches the crash on the Simulator (Error -10814)
+            await Shell.Current.DisplayAlert("Info", "Email tapped! (No Mail app on Simulator)", "OK");
+        }
+    }
 
     [RelayCommand]
     async Task Website()
-        => await Launcher.OpenAsync("https://apollonvolados.gr");
+    {
+        try
+        {
+            await Launcher.OpenAsync("https://apollonvolados.gr");
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Error", "Could not open website", "OK");
+        }
+    }
 
     [RelayCommand]
     async Task Map()
-        => await Launcher.OpenAsync(
-            "https://maps.google.com/?q=Δημοτικό Γήπεδο Βωλάδος");
+    {
+        try
+        {
+            // Fixed URL: Uses the standard Google Maps query format
+            // This works on both Android (opens Maps app) and iOS (opens Browser/Maps)
+            string mapUrl = "https://www.google.com/maps/search/?api=1&query=Γήπεδο+Βωλάδος";
+            await Launcher.OpenAsync(mapUrl);
+        }
+        catch (Exception)
+        {
+            await Shell.Current.DisplayAlert("Error", "Could not open maps", "OK");
+        }
+    }
 }

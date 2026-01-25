@@ -14,6 +14,7 @@
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 	</PropertyGroup>
 
+	<!-- Android-specific -->
 	<PropertyGroup Condition="$(TargetFramework.Contains('-android'))">
 		<AndroidMinSdkVersion>26</AndroidMinSdkVersion>
 	</PropertyGroup>
@@ -25,20 +26,20 @@
 		<PublishTrimmed>true</PublishTrimmed>
 	</PropertyGroup>
 
+	<!-- iOS-specific -->
 	<PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
 		<SupportedOSPlatformVersion>11.0</SupportedOSPlatformVersion>
 		<IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
 	</PropertyGroup>
 
+	<!-- MAUI Assets -->
 	<ItemGroup>
 		<MauiIcon Include="Resources/AppIcon/main_icon.png" Color="#FFFFFF" />
-		<MauiIcon Include="Resources\Assets.xcassets\AppIcon.appiconset\icon.png">
-		  <Color>#FFFFFF</Color>
-		</MauiIcon>
-		<MauiSplashScreen Include="Resources/AppIcon/main_icon.png" Color="#1E6F43" Resize="false" />
+		<MauiSplashScreen Include="Resources/Splash/appsplash.png" Color="#1E6F43" Resize="false" />
 		<MauiImage Include="Resources/Images/**/*" />
 	</ItemGroup>
 
+	<!-- NuGet packages -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
@@ -47,10 +48,27 @@
 		<PackageReference Include="sqlite-net-pcl" />
 	</ItemGroup>
 
+	<!-- XAML Pages -->
 	<ItemGroup>
 		<Compile Update="Views/SplashPage.xaml.cs">
 			<DependentUpon>SplashPage.xaml</DependentUpon>
 		</Compile>
+		<Compile Remove="Resources\Assets.xcassets\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Remove="Resources\Assets.xcassets\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiCss Remove="Resources\Assets.xcassets\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Remove="Resources\Assets.xcassets\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <AndroidAarLibrary Remove="Resources\Assets.xcassets\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\Assets.xcassets\**" />
 	</ItemGroup>
 
 </Project>

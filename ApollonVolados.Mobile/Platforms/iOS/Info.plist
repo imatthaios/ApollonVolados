@@ -4,11 +4,18 @@
     <dict>
         <key>LSRequiresIPhoneOS</key>
         <true/>
-
         <key>UIDeviceFamily</key>
         <array>
             <integer>1</integer> <!-- iPhone -->
             <integer>2</integer> <!-- iPad -->
+        </array>
+        
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>mailto</string>
+            <string>tel</string>
+            <string>https</string>
+            <string>http</string>
         </array>
 
         <key>UIRequiredDeviceCapabilities</key>
@@ -31,8 +38,14 @@
             <string>UIInterfaceOrientationLandscapeRight</string>
         </array>
 
-        <!-- Corrected App Icon reference -->
-        <key>XSAppIconAssets</key>
-        <string>AppIcon</string>
+        <!-- Background fetch -->
+        <key>UIBackgroundModes</key>
+        <array>
+            <string>fetch</string>
+        </array>
+
+        <!-- App Icon -->
+<!--        <key>XSAppIconAssets</key>-->
+<!--        <string>Assets.xcassets/AppIcon.appiconset</string>-->
     </dict>
 </plist>

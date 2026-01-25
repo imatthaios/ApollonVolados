@@ -1,4 +1,3 @@
-using Android.Runtime;
 using Foundation;
 
 namespace ApollonVolados.Mobile;
