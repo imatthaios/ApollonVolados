@@ -32,6 +32,9 @@
 
 	<ItemGroup>
 		<MauiIcon Include="Resources/AppIcon/main_icon.png" Color="#FFFFFF" />
+		<MauiIcon Include="Resources\Assets.xcassets\AppIcon.appiconset\icon.png">
+		  <Color>#FFFFFF</Color>
+		</MauiIcon>
 		<MauiSplashScreen Include="Resources/AppIcon/main_icon.png" Color="#1E6F43" Resize="false" />
 		<MauiImage Include="Resources/Images/**/*" />
 	</ItemGroup>
