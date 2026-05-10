@@ -1,0 +1,145 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🤖 Build: Android Debug",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["build", "-f", "net10.0-android", "-c", "Debug"],
+      "options": {
+        "cwd": "${workspaceFolder}/ApollonVolados.Mobile"
+      },
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+
+    {
+      "label": "🍎 Build: iOS Debug (Device)",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "-f",
+        "net10.0-ios",
+        "-c",
+        "Debug",
+        "-r",
+        "ios-arm64"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ApollonVolados.Mobile"
+      },
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+
+    {
+      "label": "🖥 Run: iOS Simulator",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "-f",
+        "net10.0-ios",
+        "-c",
+        "Debug",
+        "-r",
+        "iossimulator-arm64",
+        "-t:Run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ApollonVolados.Mobile"
+      },
+      "group": "build"
+    },
+
+    {
+      "label": "🧹 Clean",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["clean"],
+      "options": {
+        "cwd": "${workspaceFolder}/ApollonVolados.Mobile"
+      }
+    },
+
+    {
+      "label": "🔄 Clean + Restore",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "dotnet clean && dotnet restore"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ApollonVolados.Mobile"
+      }
+    },
+
+    {
+      "label": "📦 Publish: Android APK",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "publish",
+        "-f",
+        "net10.0-android",
+        "-c",
+        "Release",
+        "-p:AndroidPackageFormat=apk"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ApollonVolados.Mobile"
+      }
+    },
+
+    {
+      "label": "📦 Publish: iOS IPA",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "publish",
+        "-f",
+        "net10.0-ios",
+        "-c",
+        "Release",
+        "-r",
+        "ios-arm64",
+        "-p:BuildIpa=true"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ApollonVolados.Mobile"
+      }
+    },
+
+    {
+      "label": "🔍 List iOS Signing Identities",
+      "type": "shell",
+      "command": "security",
+      "args": ["find-identity", "-v", "-p", "codesigning"]
+    },
+
+    {
+      "label": "📋 List Provisioning Profiles",
+      "type": "shell",
+      "command": "ls",
+      "args": [
+        "-la",
+        "~/Library/MobileDevice/Provisioning Profiles/"
+      ]
+    },
+
+    {
+      "label": "🔎 Find IPA output",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "find . -name '*.ipa' -not -path '*/node_modules/*'"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ApollonVolados.Mobile"
+      }
+    }
+  ]
+}

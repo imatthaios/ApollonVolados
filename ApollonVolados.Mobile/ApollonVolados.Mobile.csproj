@@ -14,14 +14,15 @@
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 	</PropertyGroup>
 
-	<!-- <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 		<ArchiveOnBuild>true</ArchiveOnBuild>
 		<BuildIpa>true</BuildIpa>
 
-		<CodesignKey>Apple Development</CodesignKey>
+		<CodesignKey>83E5262836814572AEF391636FD168643B570616</CodesignKey>
 		<CodesignProvision>Automatic</CodesignProvision>
-	</PropertyGroup> -->
+		    <EnableCodeSigning>true</EnableCodeSigning>
+	</PropertyGroup>
 
 	<!-- Android-specific -->
 	<PropertyGroup Condition="$(TargetFramework.Contains('-android'))">
