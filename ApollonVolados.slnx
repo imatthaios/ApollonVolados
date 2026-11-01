@@ -1,3 +1,6 @@
 <Solution>
   <Project Path="ApollonVolados.Mobile/ApollonVolados.Mobile.csproj" />
+  <Folder Name="/tests/">
+    <Project Path="tests/ApollonVolados.Mobile.Tests/ApollonVolados.Mobile.Tests.csproj" />
+  </Folder>
 </Solution>

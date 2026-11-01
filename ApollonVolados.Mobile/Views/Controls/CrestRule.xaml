@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- The app's signature rule: a short crest-green bar with a bronze hairline (docs/DESIGN.md §5). -->
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ApollonVolados.Mobile.Views.Controls.CrestRule">
+
+    <Grid x:Name="Root" ColumnDefinitions="Auto,*" ColumnSpacing="{StaticResource Space1}">
+        <BoxView x:Name="LeadingLine" Style="{StaticResource CrestRule.Line}" IsVisible="False" />
+        <BoxView x:Name="Bar" Style="{StaticResource CrestRule.Bar}" />
+        <BoxView x:Name="TrailingLine" Grid.Column="1" Style="{StaticResource CrestRule.Line}" />
+    </Grid>
+</ContentView>

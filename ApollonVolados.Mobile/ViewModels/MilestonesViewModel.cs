@@ -3,6 +3,7 @@ using ApollonVolados.Mobile.Models;
 
 namespace ApollonVolados.Mobile.ViewModels;
 
+/// <summary>Static list of club milestones shown on the Club tab.</summary>
 public class MilestonesViewModel
 {
     public ObservableCollection<Milestone> Items { get; } = new()

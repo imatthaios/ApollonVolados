@@ -2,49 +2,18 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ApollonVolados.Mobile.Views.TeamWebPage"
-    Shell.NavBarIsVisible="False">
+    x:Class="ApollonVolados.Mobile.Views.TeamWebPage">
 
-    <Grid>
+    <!-- Top bar (platform back affordance) / progress / content. No hard-coded safe-area margins. -->
+    <Grid RowDefinitions="Auto,Auto,*">
+        <Grid Style="{StaticResource TopBar}">
+            <Button Style="{StaticResource Button.Back}" Clicked="OnBackClicked" />
+        </Grid>
 
-        <!-- PROGRESS BAR -->
-        <ProgressBar
-            x:Name="LoadingProgress"
-            Progress="0"
-            IsVisible="False"
-            HeightRequest="3"
-            BackgroundColor="Transparent"
-            ProgressColor="{StaticResource PrimaryGreen}"
-            VerticalOptions="Start" />
+        <ProgressBar x:Name="LoadingProgress" Grid.Row="1" IsVisible="False" />
 
-        <!-- WEB VIEW -->
         <WebView
             x:Name="Browser"
-            Navigating="OnNavigating"
-            Navigated="OnNavigated"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill" />
-
-        <!-- BACK BUTTON (overlay cinematic) -->
-        <Button
-            Text="← Πίσω"
-            FontSize="20"
-            WidthRequest="44"
-            HeightRequest="44"
-            CornerRadius="22"
-            BackgroundColor="#CCFFFFFF"
-            TextColor="{StaticResource PrimaryGreen}"
-            HorizontalOptions="Start"
-            VerticalOptions="Start"
-            Clicked="OnBackClicked">
-    
-            <Button.Margin>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="iOS" Value="16, 60, 16, 16" />
-                    <On Platform="Android" Value="16" />
-                </OnPlatform>
-            </Button.Margin>
-        </Button>
-
+            Grid.Row="2" />
     </Grid>
 </ContentPage>

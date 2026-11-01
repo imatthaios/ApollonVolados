@@ -1,14 +1,15 @@
-﻿using ApollonVolados.Mobile.Views;
+using ApollonVolados.Mobile.Services;
 
 namespace ApollonVolados.Mobile;
 
 public partial class App : Application
 {
-	public App()
+	public App(IThemeService themes)
 	{
 		InitializeComponent();
-		Routing.RegisterRoute(nameof(TeamWebPage), typeof(TeamWebPage));
-    }
+		// Apply the saved Automatic / Light / Dark choice before the first page renders.
+		themes.ApplySaved();
+	}
 
 	protected override Window CreateWindow(IActivationState? activationState)
 	{

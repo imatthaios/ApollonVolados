@@ -14,6 +14,6 @@ public partial class HomePage : ContentPage
         if (HeroLogo == null)
             return;
 
-        await HeroLogo.FadeTo(1, 400, Easing.CubicOut);
+        await HeroLogo.FadeToAsync(1, 400, Easing.CubicOut);
     }
 }

@@ -3,17 +3,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:ApollonVolados.Mobile.Views"
-    x:Class="ApollonVolados.Mobile.AppShell"
-    Shell.NavBarIsVisible="False"
-    Shell.TabBarBackgroundColor="{StaticResource BackgroundColor}"
-    Shell.TabBarForegroundColor="{StaticResource PrimaryGreen}"
-    Shell.TabBarUnselectedColor="#9BBFB1">
+    x:Class="ApollonVolados.Mobile.AppShell">
 
-    <!-- Splash -->
+    <!-- Colours come from the implicit Shell style in Resources/Styles/Styles.xaml -->
+
     <ShellContent
         Route="splash"
         ContentTemplate="{DataTemplate views:AnimatedSplashPage}" />
-    
+
     <TabBar>
         <ShellContent
             Route="home"
@@ -22,16 +19,19 @@
             ContentTemplate="{DataTemplate views:HomePage}" />
 
         <ShellContent
+            Route="news"
             Title="Νέα"
             Icon="news.png"
             ContentTemplate="{DataTemplate views:NewsPage}" />
 
         <ShellContent
+            Route="teams"
             Title="Τμήματα"
             Icon="matches.png"
             ContentTemplate="{DataTemplate views:TeamsPage}" />
 
         <ShellContent
+            Route="club"
             Title="Σύλλογος"
             Icon="info.png"
             ContentTemplate="{DataTemplate views:ClubPage}" />

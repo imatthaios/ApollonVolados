@@ -2,44 +2,51 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ApollonVolados.Mobile.Views.Controls"
     x:Class="ApollonVolados.Mobile.Views.HomePage"
-    Title="Αρχική"
-    BackgroundColor="{StaticResource BackgroundColor}">
+    Title="Αρχική">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="32"
-            Spacing="28"
-            HorizontalOptions="Center"
-            VerticalOptions="Center">
+        <VerticalStackLayout Style="{StaticResource Stack.Page}" VerticalOptions="Center">
 
-            <!-- LOGO -->
-            <Image
-                x:Name="HeroLogo"
-                Source="apollon_logo.png"
-                HeightRequest="180"
-                Opacity="0"
-                HorizontalOptions="Center"
-                Aspect="AspectFit" />
+            <!-- HERO: crest in its ring, name, rule -->
+            <VerticalStackLayout Style="{StaticResource Stack.Section}">
+                <Border x:Name="HeroLogo" Style="{StaticResource CrestFrame}" Opacity="0">
+                    <Image Source="crest.png" SemanticProperties.Description="Έμβλημα Απόλλων Βωλάδος" />
+                </Border>
 
-            <!-- TITLE -->
-            <Label
-                Text="Η αποστολή μας"
-                FontFamily="PlayfairBold"
-                FontSize="26"
-                TextColor="{StaticResource TextPrimary}"
-                HorizontalTextAlignment="Center" />
+                <Label
+                    Text="ΑΘΛΗΤΙΚΟΣ ΣΥΛΛΟΓΟΣ · 1924"
+                    Style="{StaticResource Text.Overline}"
+                    HorizontalTextAlignment="Center" />
 
-            <!-- MISSION TEXT -->
-            <Label
-                Text="Στον Α.Σ Απόλλων Βωλάδος, η αποστολή μας είναι να προάγουμε και να καλλιεργούμε τον αθλητισμό, τον πολιτισμό, την ανάπτυξη δεξιοτήτων και την ενότητα μέσω των δράσεών μας.
+                <Label
+                    Text="Απόλλων Βωλάδος"
+                    Style="{StaticResource Text.Display}"
+                    HorizontalTextAlignment="Center"
+                    SemanticProperties.HeadingLevel="Level1" />
 
-Είμαστε αφοσιωμένοι στο να ενδυναμώνουμε τους ανθρώπους μέσω της αθλητικής και πολιτιστικής δραστηριότητας και να ενώνουμε την κοινότητά μας, μέσα από την αγάπη για τον αθλητισμό και τη συνεργασία."
-                FontFamily="Baskerville"
-                FontSize="15"
-                LineHeight="1.6"
-                TextColor="{StaticResource TextSecondary}"
-                HorizontalTextAlignment="Center" />
+                <controls:CrestRule IsCentered="True" />
+            </VerticalStackLayout>
+
+            <!-- MISSION -->
+            <VerticalStackLayout Style="{StaticResource Stack.Section}">
+                <Label
+                    Text="Η αποστολή μας"
+                    Style="{StaticResource Text.Title2}"
+                    HorizontalTextAlignment="Center"
+                    SemanticProperties.HeadingLevel="Level2" />
+
+                <Label
+                    Text="Στον Α.Σ. Απόλλων Βωλάδος, η αποστολή μας είναι να προάγουμε και να καλλιεργούμε τον αθλητισμό, τον πολιτισμό, την ανάπτυξη δεξιοτήτων και την ενότητα μέσω των δράσεών μας."
+                    Style="{StaticResource Text.Callout}"
+                    HorizontalTextAlignment="Center" />
+
+                <Label
+                    Text="Είμαστε αφοσιωμένοι στο να ενδυναμώνουμε τους ανθρώπους μέσω της αθλητικής και πολιτιστικής δραστηριότητας και να ενώνουμε την κοινότητά μας, μέσα από την αγάπη για τον αθλητισμό και τη συνεργασία."
+                    Style="{StaticResource Text.Callout}"
+                    HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>

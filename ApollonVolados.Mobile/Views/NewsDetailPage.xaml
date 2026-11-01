@@ -1,26 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ApollonVolados.Mobile.Views.NewsDetailPage"
-    Shell.NavBarIsVisible="False"
-    BackgroundColor="{StaticResource BackgroundColor}">
+    x:Class="ApollonVolados.Mobile.Views.NewsDetailPage">
 
-    <Grid RowDefinitions="Auto,*">
-
-        <!-- Back button -->
-        <Grid Padding="12">
-            <Button
-                Text="← Πίσω"
-                Style="{StaticResource PrimaryButton}"
-                HorizontalOptions="Start"
-                Clicked="OnBackClicked"/>
+    <!-- Top bar (platform back affordance) / progress / content. No hard-coded safe-area margins. -->
+    <Grid RowDefinitions="Auto,Auto,*">
+        <Grid Style="{StaticResource TopBar}">
+            <Button Style="{StaticResource Button.Back}" Clicked="OnBackClicked" />
         </Grid>
 
-        <!-- Web -->
+        <ProgressBar x:Name="LoadingProgress" Grid.Row="1" IsVisible="False" />
+
         <WebView
             x:Name="Browser"
-            Grid.Row="1"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill"/>
+            Grid.Row="2" />
     </Grid>
 </ContentPage>

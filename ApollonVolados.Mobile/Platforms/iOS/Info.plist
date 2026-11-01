@@ -38,14 +38,31 @@
             <string>UIInterfaceOrientationLandscapeRight</string>
         </array>
 
-        <!-- Background fetch -->
-        <key>UIBackgroundModes</key>
-        <array>
-            <string>fetch</string>
-        </array>
+        <!-- UIScene life cycle (required by the iOS 27 SDK). The configuration name is the one
+             MauiUIApplicationDelegate asks for; the delegate class is Platforms/iOS/SceneDelegate.cs. -->
+        <key>UIApplicationSceneManifest</key>
+        <dict>
+            <key>UIApplicationSupportsMultipleScenes</key>
+            <false/>
+            <key>UISceneConfigurations</key>
+            <dict>
+                <key>UIWindowSceneSessionRoleApplication</key>
+                <array>
+                    <dict>
+                        <key>UISceneConfigurationName</key>
+                        <string>__MAUI_DEFAULT_SCENE_CONFIGURATION__</string>
+                        <key>UISceneDelegateClassName</key>
+                        <string>SceneDelegate</string>
+                    </dict>
+                </array>
+            </dict>
+        </dict>
 
-        <!-- App Icon -->
-<!--        <key>XSAppIconAssets</key>-->
-<!--        <string>Assets.xcassets/AppIcon.appiconset</string>-->
+        <!-- Only standard HTTPS is used, which is exempt from export compliance; this stops
+             App Store Connect asking the encryption question on every upload (docs/PUBLISHING.md). -->
+        <key>ITSAppUsesNonExemptEncryption</key>
+        <false/>
+
+        <!-- The app icon comes from MauiIcon + <AppIcon> in the .csproj; no XSAppIconAssets needed. -->
     </dict>
 </plist>

@@ -1,105 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ApollonVolados.Mobile.ViewModels"
+    xmlns:models="clr-namespace:ApollonVolados.Mobile.Models"
+    xmlns:controls="clr-namespace:ApollonVolados.Mobile.Views.Controls"
     x:Class="ApollonVolados.Mobile.Views.TeamsPage"
-    Title="Ομάδες"
-    BackgroundColor="{StaticResource BackgroundColor}">
+    x:DataType="vm:TeamsViewModel"
+    Title="Τμήματα">
 
-    <Grid>
-        <BoxView 
-            Color="{StaticResource PrimaryColor}" 
-            Opacity="0.05" 
-            HeightRequest="200" 
-            VerticalOptions="Start" 
-            HorizontalOptions="Fill" />
+    <CollectionView
+        ItemsSource="{Binding Categories}"
+        SelectionMode="Single"
+        SelectionChanged="OnSelectionChanged">
 
-        <CollectionView
-            ItemsSource="{Binding Categories}"
-            SelectionMode="Single"
-            SelectionChanged="OnSelectionChanged"
-            Margin="16">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                Orientation="Vertical"
+                Span="{OnIdiom Phone=1, Tablet=2, Desktop=3}"
+                VerticalItemSpacing="{StaticResource Space3}"
+                HorizontalItemSpacing="0" />
+        </CollectionView.ItemsLayout>
 
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout 
-                    Orientation="Vertical"
-                    Span="{OnIdiom Phone=1, Tablet=2, Desktop=3}"
-                    HorizontalItemSpacing="12"
-                    VerticalItemSpacing="12" />
-            </CollectionView.ItemsLayout>
+        <CollectionView.Header>
+            <VerticalStackLayout Style="{StaticResource Stack.Header}" Margin="{StaticResource ListLeadItemMargin}">
+                <Label Text="ΤΜΗΜΑΤΑ" Style="{StaticResource Text.Overline}" />
+                <Label Text="Οι ομάδες μας" Style="{StaticResource Text.Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <controls:CrestRule />
+            </VerticalStackLayout>
+        </CollectionView.Header>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:TeamCategory">
+                <Border Style="{StaticResource Card}" Margin="{StaticResource ListItemMargin}">
+                    <Grid ColumnDefinitions="Auto,*,Auto" Style="{StaticResource Grid.MediaRow}">
 
-                    <Border
-                        BackgroundColor="{StaticResource SurfaceColor}"
-                        Padding="16"
-                        StrokeShape="RoundRectangle 16"
-                        StrokeThickness="0"
-                        HeightRequest="90"> 
-                        <Border.Shadow>
-                            <Shadow
-                                Brush="#1A000000"
-                                Offset="0,4"
-                                Radius="6" />
-                        </Border.Shadow>
-
-                        <Grid ColumnDefinitions="50,*" ColumnSpacing="12">
-                            
-                            <Border 
-                                Grid.Column="0"
-                                HeightRequest="50"
-                                WidthRequest="50"
-                                StrokeShape="RoundRectangle 25"
-                                BackgroundColor="{StaticResource PrimaryColor}"
-                                StrokeThickness="0"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center">
-                                <Label
-                                    Text="{Binding Icon}"
-                                    FontSize="24"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"
-                                    TextColor="White" />
+                        <!-- Badge: green disc ringed in bronze (the crest ring) -->
+                        <Border Style="{StaticResource CrestDisc}">
+                            <Border Style="{StaticResource CrestDisc.Ring}">
+                                <Label Text="{Binding Icon}" Style="{StaticResource CrestDisc.Glyph}" />
                             </Border>
+                        </Border>
 
-                            <VerticalStackLayout
-                                Grid.Column="1"
-                                VerticalOptions="Center"
-                                Spacing="2">
+                        <VerticalStackLayout Grid.Column="1" Style="{StaticResource Stack.Text}" VerticalOptions="Center">
+                            <Label Text="{Binding Title}" Style="{StaticResource Text.Headline}" LineBreakMode="TailTruncation" />
+                            <Label Text="{Binding Subtitle}" Style="{StaticResource Text.Subhead}" LineBreakMode="TailTruncation" />
+                        </VerticalStackLayout>
 
-                                <Label
-                                    Text="{Binding Title}"
-                                    FontSize="16"
-                                    FontAttributes="Bold"
-                                    LineBreakMode="TailTruncation"
-                                    TextColor="{StaticResource TextPrimary}" />
+                        <Label Grid.Column="2" Style="{StaticResource Text.Chevron}" />
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
 
-                                <Label
-                                    Text="{Binding Subtitle}"
-                                    FontSize="12"
-                                    LineBreakMode="TailTruncation"
-                                    TextColor="{StaticResource TextSecondary}" />
-                            </VerticalStackLayout>
-                            
-                            <Label 
-                                Grid.Column="1"
-                                Text="›"
-                                FontSize="24"
-                                TextColor="{StaticResource TextSecondary}"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center"
-                                Margin="0,0,4,0"/>
-
-                        </Grid>
-                    </Border>
-
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-
-            <CollectionView.Footer>
-                <BoxView HeightRequest="20" Color="Transparent" />
-            </CollectionView.Footer>
-
-        </CollectionView>
-    </Grid>
+        <CollectionView.Footer>
+            <BoxView HeightRequest="{StaticResource Space6}" Color="Transparent" />
+        </CollectionView.Footer>
+    </CollectionView>
 </ContentPage>
