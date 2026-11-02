@@ -3,42 +3,20 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="ApollonVolados.Mobile.Views.AnimatedSplashPage"
-    BackgroundColor="{StaticResource PrimaryGreen}"
-    Shell.NavBarIsVisible="False">
+    Style="{StaticResource Page.Splash}">
 
     <Grid>
+        <!-- Soft light wave played over the crest -->
+        <BoxView x:Name="LightOverlay" Color="{StaticResource CrestParchment}" Opacity="0" />
 
-        <!-- SOFT LIGHT OVERLAY -->
-        <BoxView
-            x:Name="LightOverlay"
-            BackgroundColor="White"
-            Opacity="0"
-        />
-
-        <!-- LOGO CONTAINER -->
+        <!-- Initial transform values are the animation's start state (see code-behind) -->
         <Border
             x:Name="LogoContainer"
-            WidthRequest="210"
-            HeightRequest="210"
-            StrokeShape="RoundRectangle 105"
-            BackgroundColor="White"
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
+            Style="{StaticResource CrestFrame.Splash}"
             Opacity="0"
             Scale="0.45"
             Rotation="-18">
-
-            <Border.Shadow>
-                <Shadow Brush="#66000000" Offset="0,14" Radius="32" />
-            </Border.Shadow>
-
-            <Image
-                x:Name="Logo"
-                Source="apollon_logo.png"
-                Aspect="AspectFit"
-                Margin="30" />
-
+            <Image x:Name="Logo" Source="crest.png" />
         </Border>
-
     </Grid>
 </ContentPage>

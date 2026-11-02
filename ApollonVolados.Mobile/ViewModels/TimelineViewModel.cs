@@ -4,6 +4,7 @@ using ApollonVolados.Mobile.Models;
 
 namespace ApollonVolados.Mobile.ViewModels;
 
+/// <summary>Static history timeline shown on the Club tab.</summary>
 public partial class TimelineViewModel : ObservableObject
 {
     public ObservableCollection<TimelineEvent> Events { get; } = new()

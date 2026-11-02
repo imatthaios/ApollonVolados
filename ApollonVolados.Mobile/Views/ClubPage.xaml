@@ -2,86 +2,84 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ApollonVolados.Mobile.ViewModels"
     xmlns:controls="clr-namespace:ApollonVolados.Mobile.Views.Controls"
     x:Class="ApollonVolados.Mobile.Views.ClubPage"
-    Shell.NavBarIsVisible="False"
-    BackgroundColor="{StaticResource BackgroundColor}"
+    x:DataType="vm:ClubViewModel"
     Title="Σύλλογος">
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="20">
+        <VerticalStackLayout Style="{StaticResource Stack.Page}">
 
-            <!-- LOGO -->
-            <Image
-                Source="apollon_logo.png"
-                HeightRequest="160"
-                HorizontalOptions="Center"
-                Aspect="AspectFit" />
+            <!-- HEADER -->
+            <VerticalStackLayout Style="{StaticResource Stack.Header}">
+                <Border Style="{StaticResource CrestFrame.Small}" HorizontalOptions="Start">
+                    <Image Source="crest.png" SemanticProperties.Description="Έμβλημα Απόλλων Βωλάδος" />
+                </Border>
+                <Label Text="ΑΘΛΗΤΙΚΟΣ ΣΥΛΛΟΓΟΣ" Style="{StaticResource Text.Overline}" />
+                <Label Text="Απόλλων Βωλάδος" Style="{StaticResource Text.Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <controls:CrestRule />
+                <Label Text="{Binding HistoryText}" Style="{StaticResource Text.Callout}" />
+            </VerticalStackLayout>
 
-            <!-- TITLE -->
-            <Label
-                Text="Αθλητικός Σύλλογος Απόλλων Βωλάδος"
-                Style="{StaticResource TitleLabel}"
-                HorizontalTextAlignment="Center" />
-
-            <Label
-                Text="Ιδρύθηκε το 1924"
-                Style="{StaticResource SmallMutedLabel}"
-                HorizontalTextAlignment="Center" />
+            <!-- CLUB FACTS -->
+            <VerticalStackLayout Style="{StaticResource Stack.Section}">
+                <Label Text="Στοιχεία Συλλόγου" Style="{StaticResource Text.Title2}" SemanticProperties.HeadingLevel="Level2" />
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Style="{StaticResource Stack.Section}">
+                        <VerticalStackLayout Style="{StaticResource Stack.Text}">
+                            <Label Text="Έτος ίδρυσης" Style="{StaticResource Text.Footnote}" />
+                            <Label Text="1924" Style="{StaticResource Text.Year}" />
+                        </VerticalStackLayout>
+                        <BoxView Style="{StaticResource Divider}" />
+                        <VerticalStackLayout Style="{StaticResource Stack.Text}">
+                            <Label Text="Έδρα" Style="{StaticResource Text.Footnote}" />
+                            <Label Text="Δημοτικό Γήπεδο Βωλάδος" Style="{StaticResource Text.Headline}" />
+                        </VerticalStackLayout>
+                        <BoxView Style="{StaticResource Divider}" />
+                        <VerticalStackLayout Style="{StaticResource Stack.Text}">
+                            <Label Text="Χρώματα" Style="{StaticResource Text.Footnote}" />
+                            <Label Text="Πράσινο – Άσπρο" Style="{StaticResource Text.Headline}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
 
             <!-- TIMELINE -->
-            <Border Style="{StaticResource Card}">
-                <Border.Shadow>
-                    <Shadow Brush="{StaticResource ShadowColor}" Offset="0,2" Radius="8" />
-                </Border.Shadow>
-
-                <VerticalStackLayout Spacing="12">
-                    <Label Text="🕰 Χρονολόγιο" Style="{StaticResource SectionHeader}" />
+            <VerticalStackLayout Style="{StaticResource Stack.Section}">
+                <Label Text="Χρονολόγιο" Style="{StaticResource Text.Title2}" SemanticProperties.HeadingLevel="Level2" />
+                <Border Style="{StaticResource Card}">
                     <controls:TimelineSection />
-                </VerticalStackLayout>
-            </Border>
-
-            <!-- CLUB INFO -->
-            <Border Style="{StaticResource Card}">
-                <Border.Shadow>
-                    <Shadow Brush="{StaticResource ShadowColor}" Offset="0,2" Radius="8" />
-                </Border.Shadow>
-
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="🏟 Στοιχεία Συλλόγου" Style="{StaticResource SectionHeader}" />
-
-                    <Label Text="📅 Έτος Ίδρυσης: 1924" Style="{StaticResource Body}" />
-                    <Label Text="🏟 Έδρα: Δημοτικό Γήπεδο Βωλάδος" Style="{StaticResource Body}" />
-                    <Label Text="🎨 Χρώματα: Πράσινο – Άσπρο" Style="{StaticResource Body}" />
-                </VerticalStackLayout>
-            </Border>
+                </Border>
+            </VerticalStackLayout>
 
             <!-- MILESTONES -->
-            <Border Style="{StaticResource Card}">
-                <Border.Shadow>
-                    <Shadow Brush="{StaticResource ShadowColor}" Offset="0,2" Radius="8" />
-                </Border.Shadow>
+            <VerticalStackLayout Style="{StaticResource Stack.Section}">
+                <Label Text="Σημαντικοί σταθμοί" Style="{StaticResource Text.Title2}" SemanticProperties.HeadingLevel="Level2" />
+                <controls:MilestonesSection />
+            </VerticalStackLayout>
 
-                <VerticalStackLayout Spacing="12">
-                    <Label Text="🏆 Σημαντικοί Σταθμοί" Style="{StaticResource SectionHeader}" />
-                    <controls:MilestonesSection />
-                </VerticalStackLayout>
-            </Border>
+            <!-- APPEARANCE: Automatic / Light / Dark -->
+            <VerticalStackLayout x:Name="AppearanceSection" x:DataType="vm:AppearanceViewModel" Style="{StaticResource Stack.Section}">
+                <Label Text="Εμφάνιση" Style="{StaticResource Text.Title2}" SemanticProperties.HeadingLevel="Level2" />
+                <Border Style="{StaticResource SegmentedControl}">
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="{StaticResource Space1}">
+                        <Button BindingContext="{Binding System}" x:DataType="vm:ThemeOption" Text="{Binding Label}" Command="{Binding SelectCommand}" Style="{StaticResource Button.Segment}" />
+                        <Button Grid.Column="1" BindingContext="{Binding Light}" x:DataType="vm:ThemeOption" Text="{Binding Label}" Command="{Binding SelectCommand}" Style="{StaticResource Button.Segment}" />
+                        <Button Grid.Column="2" BindingContext="{Binding Dark}" x:DataType="vm:ThemeOption" Text="{Binding Label}" Command="{Binding SelectCommand}" Style="{StaticResource Button.Segment}" />
+                    </Grid>
+                </Border>
+                <Label Text="Το «Αυτόματο» ακολουθεί τη ρύθμιση του τηλεφώνου." Style="{StaticResource Text.Footnote}" />
+            </VerticalStackLayout>
 
             <!-- CONTACT -->
-            <Border Style="{StaticResource Card}">
-                <Border.Shadow>
-                    <Shadow Brush="{StaticResource ShadowColor}" Offset="0,2" Radius="8" />
-                </Border.Shadow>
-
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="📞 Επικοινωνία" Style="{StaticResource SectionHeader}" />
-                    <Button Text="📞 Τηλέφωνο" Style="{StaticResource PrimaryButton}" Command="{Binding CallCommand}" />
-                    <Button Text="✉️ Email"     Style="{StaticResource PrimaryButton}" Command="{Binding EmailCommand}" />
-                    <Button Text="🌐 Website"   Style="{StaticResource PrimaryButton}" Command="{Binding WebsiteCommand}" />
-                    <Button Text="📍 Χάρτης"    Style="{StaticResource PrimaryButton}" Command="{Binding MapCommand}" />
-                </VerticalStackLayout>
-            </Border>
+            <VerticalStackLayout Style="{StaticResource Stack.Section}">
+                <Label Text="Επικοινωνία" Style="{StaticResource Text.Title2}" SemanticProperties.HeadingLevel="Level2" />
+                <Button Text="Τηλέφωνο" Style="{StaticResource Button.Primary}" Command="{Binding CallCommand}" />
+                <Button Text="Email" Style="{StaticResource Button.Secondary}" Command="{Binding EmailCommand}" />
+                <Button Text="Ιστοσελίδα" Style="{StaticResource Button.Secondary}" Command="{Binding WebsiteCommand}" />
+                <Button Text="Χάρτης" Style="{StaticResource Button.Secondary}" Command="{Binding MapCommand}" />
+            </VerticalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>

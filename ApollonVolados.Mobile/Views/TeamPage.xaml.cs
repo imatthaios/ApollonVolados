@@ -5,26 +5,23 @@ namespace ApollonVolados.Mobile.Views;
 
 public partial class TeamsPage : ContentPage
 {
+    private readonly TeamsViewModel _vm;
+
     public TeamsPage(TeamsViewModel vm)
     {
         InitializeComponent();
-        BindingContext = vm;
+        BindingContext = _vm = vm;
     }
 
-    private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        var item = e.CurrentSelection.FirstOrDefault() as TeamCategory;
-        if (item == null)
+        if (e.CurrentSelection.FirstOrDefault() is not TeamCategory item)
             return;
 
-        ((CollectionView)sender).SelectedItem = null;
+        if (sender is CollectionView list)
+            list.SelectedItem = null;
 
-        await Shell.Current.GoToAsync(
-            nameof(TeamWebPage),
-            new Dictionary<string, object>
-            {
-                { "url", item.Url },
-                { "title", item.Title }
-            });
+        UiFeedback.Selection();
+        await _vm.OpenTeamAsync(item);
     }
 }

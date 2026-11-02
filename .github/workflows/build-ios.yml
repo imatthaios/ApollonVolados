@@ -2,37 +2,57 @@ name: Build iOS App
 
 on:
   push:
-    branches: [ "master", "main", "net8-prod" ] # Add your working branch
+    branches: [ "master", "main" ]
+  pull_request:
   workflow_dispatch: # Allows manual trigger button
 
 jobs:
-  build:
-    runs-on: macos-13 # We use GitHub's virtual Mac
-    
+  test:
+    runs-on: macos-latest
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup .NET 8
-      uses: actions/setup-dotnet@v3
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
-        
+        global-json-file: global.json
+
+    # The test project references the app project, which restores all of its targets.
+    - name: Install MAUI workloads
+      run: dotnet workload install maui-ios maui-android
+
+    - name: Run unit tests
+      run: dotnet test tests/ApollonVolados.Mobile.Tests --logger "console;verbosity=normal"
+
+  build:
+    needs: test
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v4
+      with:
+        global-json-file: global.json
+
     - name: Install MAUI Workload
-      run: dotnet workload install maui-ios
-      
+      run: dotnet workload install maui-ios maui-android
+
     - name: Publish iOS App (Unsigned)
-      # This builds the .ipa without requiring a paid Apple Developer certificate immediately.
-      # Sideloadly (or AltStore) will handle the signing later.
+      # Builds an unsigned .ipa (no Apple certificate on the runner). Signing an Xcode archive needs
+      # the club's distribution certificate; see docs/PUBLISHING.md §2.4 and §6.
       run: |
         dotnet publish ApollonVolados.Mobile/ApollonVolados.Mobile.csproj \
-        -f net8.0-ios \
+        -f net10.0-ios \
         -c Release \
-        -p:ArchiveOnBuild=true \
-        -p:EnableAssemblyILStripping=false \
-        -p:CodesignKey="Apple Development: Created via API (Do Not Use)" \
-        -p:CodesignProvision="Created via API (Do Not Use)" \
+        -p:ArchiveOnBuild=false \
+        -p:EnableCodeSigning=false \
+        -p:CodesignKey= \
+        -p:CodesignProvision= \
         -o build_output
-      
+
     - name: Upload IPA Artifact
       uses: actions/upload-artifact@v4
       with:

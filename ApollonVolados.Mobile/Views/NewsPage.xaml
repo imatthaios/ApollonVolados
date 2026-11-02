@@ -3,108 +3,107 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:ApollonVolados.Mobile.ViewModels"
+    xmlns:views="clr-namespace:ApollonVolados.Mobile.Views"
+    xmlns:controls="clr-namespace:ApollonVolados.Mobile.Views.Controls"
     x:Class="ApollonVolados.Mobile.Views.NewsPage"
     x:DataType="vm:NewsViewModel"
-    Title="Νέα"
-    BackgroundColor="{StaticResource SurfaceColor}">
+    Title="Νέα">
 
-    <Grid>
+    <ContentPage.Resources>
 
+        <!-- Lead story: big image, serif headline, elevation level 2 -->
+        <DataTemplate x:Key="LeadTemplate" x:DataType="vm:NewsItemViewModel">
+            <Border Style="{StaticResource Card.Lead}" Margin="{StaticResource ListLeadItemMargin}">
+                <VerticalStackLayout>
+                    <Image Source="{Binding ImageUrl}" Style="{StaticResource Image.LeadCover}" />
+                    <VerticalStackLayout Style="{StaticResource Stack.Text}" Padding="{StaticResource CardPadding}">
+                        <Label Text="ΚΥΡΙΟ ΘΕΜΑ" Style="{StaticResource Text.Overline}" />
+                        <Label
+                            Text="{Binding TitleText}"
+                            Style="{StaticResource Text.Title2}"
+                            MaxLines="3"
+                            LineBreakMode="TailTruncation" />
+                        <Label Text="{Binding PublishedDateText}" Style="{StaticResource Text.Caption}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <!-- Every other story: thumbnail + headline row -->
+        <DataTemplate x:Key="ItemTemplate" x:DataType="vm:NewsItemViewModel">
+            <Border Style="{StaticResource Card.Compact}" Margin="{StaticResource ListItemMargin}">
+                <Grid ColumnDefinitions="Auto,*" Style="{StaticResource Grid.MediaRow}">
+                    <Border Style="{StaticResource Thumbnail}">
+                        <Image Source="{Binding ImageUrl}" Style="{StaticResource Image.Cover}" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Style="{StaticResource Stack.Text}" VerticalOptions="Center">
+                        <Label
+                            Text="{Binding TitleText}"
+                            Style="{StaticResource Text.Headline}"
+                            MaxLines="3"
+                            LineBreakMode="TailTruncation" />
+                        <Label Text="{Binding PublishedDateText}" Style="{StaticResource Text.Caption}" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <views:NewsTemplateSelector
+            x:Key="NewsTemplates"
+            LeadTemplate="{StaticResource LeadTemplate}"
+            ItemTemplate="{StaticResource ItemTemplate}" />
+    </ContentPage.Resources>
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
         <CollectionView
             ItemsSource="{Binding Posts}"
+            ItemTemplate="{StaticResource NewsTemplates}"
             SelectionMode="Single"
-            SelectionChanged="OnItemSelected"
-            Margin="12"
-            BackgroundColor="{StaticResource SurfaceColor}"
-            ItemSizingStrategy="MeasureFirstItem">
+            SelectionChanged="OnItemSelected">
 
             <CollectionView.ItemsLayout>
-                <GridItemsLayout 
-                    Orientation="Vertical"
-                    Span="{OnIdiom Phone=1, Tablet=2, Desktop=3}" 
-                    VerticalItemSpacing="16"
-                    HorizontalItemSpacing="16" />
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="{StaticResource Space3}" />
             </CollectionView.ItemsLayout>
 
-            <CollectionView.EmptyView>
-                <VerticalStackLayout Spacing="16" Padding="12">
-                    <Border
-                        HeightRequest="96"
-                        StrokeShape="RoundRectangle 18"
-                        BackgroundColor="{StaticResource SkeletonColor}" />
-                    <Border
-                        HeightRequest="96"
-                        StrokeShape="RoundRectangle 18"
-                        BackgroundColor="{StaticResource SkeletonColor}" />
-                    <Border
-                        HeightRequest="96"
-                        StrokeShape="RoundRectangle 18"
-                        BackgroundColor="{StaticResource SkeletonColor}" />
+            <CollectionView.Header>
+                <VerticalStackLayout Style="{StaticResource Stack.Header}" Margin="{StaticResource ListLeadItemMargin}">
+                    <Label Text="ΤΑ ΝΕΑ ΜΑΣ" Style="{StaticResource Text.Overline}" />
+                    <Label Text="Νέα" Style="{StaticResource Text.Title1}" SemanticProperties.HeadingLevel="Level1" />
+                    <controls:CrestRule />
                 </VerticalStackLayout>
+            </CollectionView.Header>
+
+            <CollectionView.EmptyView>
+                <Grid>
+                    <!-- Error: loading failed and nothing is cached -->
+                    <VerticalStackLayout
+                        IsVisible="{Binding HasError}"
+                        Style="{StaticResource Stack.Section}"
+                        Padding="{StaticResource CardPadding}"
+                        VerticalOptions="Center">
+                        <Label Text="{Binding ErrorMessage}" Style="{StaticResource Text.Error}" />
+                        <Button
+                            Text="Δοκιμάστε ξανά"
+                            Style="{StaticResource Button.Secondary}"
+                            HorizontalOptions="Center"
+                            Command="{Binding RefreshCommand}" />
+                    </VerticalStackLayout>
+
+                    <!-- Loading skeleton -->
+                    <VerticalStackLayout
+                        IsVisible="{Binding HasError, Converter={StaticResource InverseBoolConverter}}"
+                        Style="{StaticResource Stack.Cards}"
+                        Margin="{StaticResource ListItemMargin}">
+                        <controls:SkeletonNewsItem />
+                        <controls:SkeletonNewsItem />
+                        <controls:SkeletonNewsItem />
+                    </VerticalStackLayout>
+                </Grid>
             </CollectionView.EmptyView>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="vm:NewsItemViewModel">
-                    <Border
-                        BackgroundColor="{StaticResource SurfaceColor}"
-                        Padding="14"
-                        StrokeShape="RoundRectangle 18">
-
-                        <Border.Shadow>
-                            <Shadow
-                                Brush="#14000000"
-                                Offset="0,3"
-                                Radius="8" />
-                        </Border.Shadow>
-
-                        <Grid ColumnDefinitions="96,*" ColumnSpacing="14">
-
-                            <Border
-                                HeightRequest="88"
-                                WidthRequest="88"
-                                StrokeShape="RoundRectangle 12"
-                                BackgroundColor="{StaticResource SkeletonColor}">
-
-                                <Image
-                                    Source="{Binding ImageUrl}"
-                                    Aspect="AspectFill" />
-                            </Border>
-
-                            <Grid Grid.Column="1" RowDefinitions="*,Auto">
-
-                                <Label
-                                    Text="{Binding TitleText}"
-                                    Style="{StaticResource ArticleTitle}"
-                                    LineBreakMode="TailTruncation"
-                                    MaxLines="3" />
-
-                                <Label
-                                    Grid.Row="1"
-                                    Text="{Binding PublishedDateText}"
-                                    Style="{StaticResource ArticleMeta}"
-                                    HorizontalOptions="End"
-                                    Margin="0,8,0,0" />
-                            </Grid>
-
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-
+            <CollectionView.Footer>
+                <BoxView HeightRequest="{StaticResource Space6}" Color="Transparent" />
+            </CollectionView.Footer>
         </CollectionView>
-
-        <Grid
-            IsVisible="{Binding IsBusy}"
-            BackgroundColor="#80FFFFFF">
-
-            <ActivityIndicator
-                IsRunning="True"
-                Color="{StaticResource PrimaryColor}"
-                WidthRequest="48"
-                HeightRequest="48"
-                HorizontalOptions="Center"
-                VerticalOptions="Center" />
-        </Grid>
-
-    </Grid>
+    </RefreshView>
 </ContentPage>

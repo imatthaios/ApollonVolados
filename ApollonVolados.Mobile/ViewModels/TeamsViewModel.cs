@@ -1,12 +1,20 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using ApollonVolados.Mobile.Models;
-using ApollonVolados.Mobile.Views;
+using ApollonVolados.Mobile.Services;
 
 namespace ApollonVolados.Mobile.ViewModels;
 
+/// <summary>Backs the Teams tab: the list of club departments and navigation to each one's web page.</summary>
 public partial class TeamsViewModel
 {
+    private readonly INavigationService _navigation;
+
+    public TeamsViewModel(INavigationService navigation)
+    {
+        _navigation = navigation;
+    }
+
     public ObservableCollection<TeamCategory> Categories { get; } =
         new()
         {
@@ -54,17 +62,15 @@ public partial class TeamsViewModel
             }
         };
 
+    /// <summary>Opens the team's website page in <c>TeamWebPage</c>. Ignores null or link-less items.</summary>
     [RelayCommand]
-    public async Task OpenTeamAsync(TeamCategory team)
+    public async Task OpenTeamAsync(TeamCategory? team)
     {
-        if (team == null) return;
+        if (team is null || string.IsNullOrWhiteSpace(team.Url))
+            return;
 
-        await Shell.Current.GoToAsync(
-            nameof(TeamWebPage),
-            new Dictionary<string, object>
-            {
-                ["Title"] = team.Title,
-                ["Url"] = team.Url
-            });
+        await _navigation.GoToAsync(
+            Routes.TeamWeb,
+            new Dictionary<string, object> { [Routes.UrlParameter] = team.Url });
     }
 }

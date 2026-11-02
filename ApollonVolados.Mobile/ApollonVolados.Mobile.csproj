@@ -1,8 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
-		<OutputType>Exe</OutputType>
+		<!-- The plain net10.0 target exists only so the unit-test project can reference the
+		     app's models, services and view models. It is a library and is never shipped. -->
+		<TargetFrameworks>net10.0-android;net10.0-ios;net10.0</TargetFrameworks>
+		<OutputType Condition="'$(TargetFramework)' != 'net10.0'">Exe</OutputType>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -21,15 +23,16 @@
 
 		<CodesignKey>83E5262836814572AEF391636FD168643B570616</CodesignKey>
 		<CodesignProvision>Automatic</CodesignProvision>
-		    <EnableCodeSigning>true</EnableCodeSigning>
+		<EnableCodeSigning>true</EnableCodeSigning>
 	</PropertyGroup>
 
 	<!-- Android-specific -->
 	<PropertyGroup Condition="$(TargetFramework.Contains('-android'))">
-		<AndroidMinSdkVersion>26</AndroidMinSdkVersion>
+		<!-- Minimum Android 8.0 (API 26). The target API comes from the .NET Android SDK (36). -->
+		<SupportedOSPlatformVersion>26.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
 		<AndroidPackageFormat>aab</AndroidPackageFormat>
 		<AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
 		<RunAOTCompilation>true</RunAOTCompilation>
@@ -38,15 +41,22 @@
 
 	<!-- iOS-specific -->
 	<PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">12.2</SupportedOSPlatformVersion>		
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>		
 		<IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+		<!-- Name of the MauiIcon (appicon.svg); without it actool compiles the icon but never assigns it -->
+		<AppIcon>appicon</AppIcon>
 	</PropertyGroup>
 
 	<!-- MAUI Assets -->
 	<ItemGroup>
-		<MauiIcon Include="Resources/AppIcon/main_icon.png" Color="#FFFFFF" />
-		<MauiSplashScreen Include="Resources/Splash/appsplash.png" Color="#1E6F43" Resize="false" />
+		<!-- Adaptive icon: green background + crest foreground (safe-zone sized). MAUI renders every iOS/Android size. -->
+		<MauiIcon Include="Resources/AppIcon/appicon.svg" ForegroundFile="Resources/AppIcon/appicon_fg.png" Color="#007A3D" />
+		<MauiSplashScreen Include="Resources/Splash/appsplash.png" Color="#007A3D" Resize="false" />
 		<MauiImage Include="Resources/Images/**/*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="ApollonVolados.Mobile.Tests" />
 	</ItemGroup>
 
 	<!-- NuGet packages -->
@@ -55,30 +65,6 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
 		<PackageReference Include="Microsoft.Extensions.Http" />
 		<PackageReference Include="CommunityToolkit.Mvvm" />
-		<PackageReference Include="sqlite-net-pcl" />
-	</ItemGroup>
-
-	<!-- XAML Pages -->
-	<ItemGroup>
-		<Compile Update="Views/SplashPage.xaml.cs">
-			<DependentUpon>SplashPage.xaml</DependentUpon>
-		</Compile>
-		<Compile Remove="Resources\Assets.xcassets\**" />
-	</ItemGroup>
-	<ItemGroup>
-	  <MauiXaml Remove="Resources\Assets.xcassets\**" />
-	</ItemGroup>
-	<ItemGroup>
-	  <MauiCss Remove="Resources\Assets.xcassets\**" />
-	</ItemGroup>
-	<ItemGroup>
-	  <EmbeddedResource Remove="Resources\Assets.xcassets\**" />
-	</ItemGroup>
-	<ItemGroup>
-	  <AndroidAarLibrary Remove="Resources\Assets.xcassets\**" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Remove="Resources\Assets.xcassets\**" />
 	</ItemGroup>
 
 </Project>
